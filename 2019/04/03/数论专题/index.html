@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>数论专题 | MrLi的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="北京理工大学珠海学院16级学生">
+  <meta name="description" content="记录一下填的第一坑，☺ 这些知识点学至yxc大佬，orz">
 <meta name="keywords" content="好奇 憨 热爱学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数论专题">
 <meta property="og:url" content="http://yoursite.com/2019/04/03/数论专题/index.html">
 <meta property="og:site_name" content="MrLi的博客">
-<meta property="og:description" content="北京理工大学珠海学院16级学生">
+<meta property="og:description" content="记录一下填的第一坑，☺ 这些知识点学至yxc大佬，orz">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-03T07:24:53.727Z">
+<meta property="og:updated_time" content="2019-04-03T09:01:23.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数论专题">
-<meta name="twitter:description" content="北京理工大学珠海学院16级学生">
+<meta name="twitter:description" content="记录一下填的第一坑，☺ 这些知识点学至yxc大佬，orz">
   
     <link rel="alternative" href="/atom.xml" title="MrLi的博客" type="application/atom+xml">
   
@@ -54,7 +54,7 @@
 		  <h1 class="header-author"><a href>Mr Li</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">喜欢放空,热爱生活 喜欢挖坑，慢慢填</p>
+		<p class="header-subtitle">喜欢放空,热爱生活     喜欢挖坑，慢慢填</p>
 		
 
 		<nav class="header-menu">
@@ -110,7 +110,7 @@
 			  <h1 class="header-author js-header-author">Mr Li</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>喜欢放空,热爱生活 喜欢挖坑，慢慢填<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>喜欢放空,热爱生活     喜欢挖坑，慢慢填<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -175,7 +175,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p><br><br>记录一下填的第一坑，☺</p>
+<p><strong>这些知识点学至yxc大佬，orz</strong><br><a id="more"></a></p>
+<p>本章主要讲的有：</p>
+<blockquote>
+<ul>
+<li>欧几里得算法</li>
+<li>扩展欧几里得算法</li>
+<li>分解质因数</li>
+<li>线性筛</li>
+<li>欧拉函数</li>
+<li>快速幂</li>
+</ul>
+</blockquote>
+<p><strong>1,欧几里得算法</strong><br>运用的是辗转相除法，不懂的可以简单模拟一下<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b ? gcd(b, a%b) : a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2,扩展欧几里得算法</strong><br>ax+by= gcd(a, b)<br>就是进行gcd的时候，同时改变a,b的系数<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!b)&#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> d = ex(b, a%b, y, x);</span><br><span class="line">    y -= (a/b)*x;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3,分解质因数 约数 欧拉数</strong><br>假设 n = p1^a1 * p2 ^a2 * …. * pn^an<br>phi(n) = n*(1-1/p1)*(1-1/p2)* … * (1-1/pn)<br>处理细节 把n乘进去左边的括号里面<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; n) &#123;</span><br><span class="line">	<span class="keyword">bool</span> first = <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">1</span>; <span class="comment">//约数个数</span></span><br><span class="line">	<span class="keyword">int</span> phi = n;  <span class="comment">// phi(n)</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d = "</span>, n);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (n%i == <span class="number">0</span>) &#123;</span><br><span class="line">			cnt++;</span><br><span class="line">			n /= i;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (cnt) &#123;</span><br><span class="line">			phi = phi - phi / i;</span><br><span class="line">			<span class="keyword">if</span> (first) first = <span class="literal">false</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">" * "</span>;</span><br><span class="line">			<span class="keyword">if</span> (cnt) <span class="built_in">printf</span>(<span class="string">"%d^%d"</span>, i, cnt);</span><br><span class="line">			num *= (cnt + <span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; num &lt;&lt; <span class="built_in">endl</span> &lt;&lt; phi &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>4，线性筛</strong><br>有个剪枝的地方记下：当发现当前在筛的质数不是这个数的质因数当中最小的，就break<br>线性筛之所以是线性时间， 是因为保证每个数是被自己最小的质因数筛掉的。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f3</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">memset</span>(st, <span class="literal">false</span>, <span class="keyword">sizeof</span>(st));</span><br><span class="line">	euler[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!st[i]) &#123;</span><br><span class="line">			prim[cnt++] = i;</span><br><span class="line">			euler[i] = i - <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cnt &amp;&amp; prim[j] * i &lt;= n; j++) &#123;</span><br><span class="line">			st[prim[j] * i] = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">if</span> (i%prim[j] == <span class="number">0</span>) &#123; <span class="comment">//下一个数prim[j]不是这个数i的最小质因数</span></span><br><span class="line">				euler[i*prim[j]] = euler[i] * prim[j];</span><br><span class="line">				<span class="keyword">break</span>; </span><br><span class="line">			&#125;</span><br><span class="line">			euler[i*prim[j]] = euler[i] * (prim[j]<span class="number">-1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>5，快速幂</strong><br>运用的是二进制的思想<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f4</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> k, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">1</span>, m = a;</span><br><span class="line">	<span class="keyword">while</span> (k) &#123;</span><br><span class="line">		<span class="keyword">if</span> (k &amp; <span class="number">1</span>) res = res * m % p;</span><br><span class="line">		m = m * m % p;</span><br><span class="line">		k &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
 
       
