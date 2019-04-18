@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | MrLi的博客</title>
+  <title>最小表示法 | MrLi的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="北京理工大学珠海学院16级学生">
+  <meta name="description" content="今天的话来学习一下最小表示法，他能解决的问题是在O(n)的时间复杂度内求一个串的最小表示比如有一个串T=”caab”， 他的字符串最小表示为”aabc”,他的思想巧妙的地方在于如果当一个地方的字符发生失配的时候，那个大于的字符前面的就不用进行二次匹配了，因为我总能找到一个比他更小的字符串使得他不是我所要求的最小的字符串表示 1234567891011121314151617181920212223">
 <meta name="keywords" content="好奇 憨 热爱学习">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MrLi的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/page/4/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最小表示法">
+<meta property="og:url" content="http://yoursite.com/2019/04/18/最小表示法/index.html">
 <meta property="og:site_name" content="MrLi的博客">
-<meta property="og:description" content="北京理工大学珠海学院16级学生">
+<meta property="og:description" content="今天的话来学习一下最小表示法，他能解决的问题是在O(n)的时间复杂度内求一个串的最小表示比如有一个串T=”caab”， 他的字符串最小表示为”aabc”,他的思想巧妙的地方在于如果当一个地方的字符发生失配的时候，那个大于的字符前面的就不用进行二次匹配了，因为我总能找到一个比他更小的字符串使得他不是我所要求的最小的字符串表示 1234567891011121314151617181920212223">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-18T00:01:15.065Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MrLi的博客">
-<meta name="twitter:description" content="北京理工大学珠海学院16级学生">
+<meta name="twitter:title" content="最小表示法">
+<meta name="twitter:description" content="今天的话来学习一下最小表示法，他能解决的问题是在O(n)的时间复杂度内求一个串的最小表示比如有一个串T=”caab”， 他的字符串最小表示为”aabc”,他的思想巧妙的地方在于如果当一个地方的字符发生失配的时候，那个大于的字符前面的就不用进行二次匹配了，因为我总能找到一个比他更小的字符串使得他不是我所要求的最小的字符串表示 1234567891011121314151617181920212223">
   
     <link rel="alternative" href="/atom.xml" title="MrLi的博客" type="application/atom+xml">
   
@@ -154,295 +155,135 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-最小表示法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      最小表示法
+    </h1>
+  
+
+        
+        <a href="/2019/04/18/最小表示法/" class="archive-article-date">
+  	<time datetime="2019-04-17T23:37:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-18</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天的话来学习一下最小表示法，他能解决的问题是在O(n)的时间复杂度内求一个串的最小表示<br>比如有一个串T=”caab”， 他的字符串最小表示为”aabc”,<strong><em>他的思想巧妙的地方在于如果当一个地方<br>的字符发生失配的时候，那个大于的字符前面的就不用进行二次匹配了，因为我总能找到一个比他<br>更小的字符串使得他不是我所要求的最小的字符串表示</em></strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">110</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> str[<span class="number">2</span> * N];</span><br><span class="line"><span class="keyword">int</span> len;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal_zx</span><span class="params">(<span class="keyword">char</span> s[N])</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = len + <span class="number">1</span>; i &lt;= <span class="number">2</span> * len; i++) s[i] = s[i - len];</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">1</span>, j = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt;= len &amp;&amp; j &lt;= len) &#123;</span><br><span class="line">		<span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (k &lt; len &amp;&amp; s[i + k] == s[j + k]) k++;</span><br><span class="line">		<span class="keyword">if</span> (k == len) <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">if</span> (s[i + k]&gt;s[j + k]) &#123;</span><br><span class="line">			i = i + k + <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span> (s[i] == s[j + k]) i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (s[i + k] &lt; s[j + k]) &#123;</span><br><span class="line">			j = j + k + <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span> (s[i + k] = s[j]) j++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> min(i, j);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; str + <span class="number">1</span>;</span><br><span class="line">	len = <span class="built_in">strlen</span>(str + <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> i = cal_zx(str);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> k = i, j = <span class="number">0</span>; j &lt; len; j++, k++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (k &gt; len) k = <span class="number">1</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; str[k];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/03/Hash/" class="archive-article-date">
-  	<time datetime="2019-04-03T07:45:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/03/Hash/">Hash</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/18/最小表示法/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/03/链表与邻接表/" class="archive-article-date">
-  	<time datetime="2019-04-03T07:45:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-03</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/03/任务清单/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">任务清单</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/03/链表与邻接表/">链表与邻接表</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/03/队列/" class="archive-article-date">
-  	<time datetime="2019-04-03T07:45:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/03/队列/">队列</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/03/栈/" class="archive-article-date">
-  	<time datetime="2019-04-03T07:45:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/03/栈/">栈</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/03/贪心/" class="archive-article-date">
-  	<time datetime="2019-04-03T07:44:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/03/贪心/">贪心</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/03/倍增/" class="archive-article-date">
-  	<time datetime="2019-04-03T07:44:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/03/倍增/">倍增</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/03/排序/" class="archive-article-date">
-  	<time datetime="2019-04-03T07:44:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/03/排序/">排序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/03/二分/" class="archive-article-date">
-  	<time datetime="2019-04-03T07:44:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/03/二分/">二分</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/03/前缀和与差分/" class="archive-article-date">
-  	<time datetime="2019-04-03T07:44:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/03/前缀和与差分/">前缀和与差分</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/03/递推与递归/" class="archive-article-date">
-  	<time datetime="2019-04-03T07:43:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/03/递推与递归/">递推与递归</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><a class="page-number" href="/archives/2019/page/2/">2</a><a class="page-number" href="/archives/2019/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2019/page/5/">5</a><a class="page-number" href="/archives/2019/page/6/">6</a><a class="extend next" rel="next" href="/archives/2019/page/5/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -466,8 +307,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
