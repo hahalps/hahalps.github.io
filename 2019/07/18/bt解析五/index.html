@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="MrLi的博客">
 <meta property="og:description" content="消息处理模块 消息处理模块的作用是根据当前的状态生成信息并发送信息，并具有处理信息的能力。这个模块的话可以看作是两大部分组成，一个是创建信息，另一个的话是处理信息。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-18T11:43:49.940Z">
+<meta property="og:updated_time" content="2019-07-18T12:00:23.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bt解析五">
 <meta name="twitter:description" content="消息处理模块 消息处理模块的作用是根据当前的状态生成信息并发送信息，并具有处理信息的能力。这个模块的话可以看作是两大部分组成，一个是创建信息，另一个的话是处理信息。">
@@ -185,25 +185,25 @@
 <p><strong>2，int char_to_int(unsigned char c[4])</strong></p>
 <p>作用是char[]转换成一个32位的整数返回。</p>
 <p><strong>3，int creat_handshake_msg(char  *info_hash, char  *peer_id,  Peer *peer)</strong></p>
-<p>这个函数的作用把握手信息写进peer的输出缓冲区当中。先看握手信息的格式为:\<pstrlen>\<pstr>\<reserved>\&lt;info_hash&gt;\&lt;peer_id&gt;。</reserved></pstr></pstrlen></p>
+<p>这个函数的作用把握手信息写进peer的输出缓冲区当中。先看握手信息的格式为:<pstrlen><pstr><reserved>&lt;info_hash&gt;&lt;peer_id&gt;。</reserved></pstr></pstrlen></p>
 <p>pstrlen的值固定为19，占用一个字节；pstr固定为“BitTorrent protocol”,占用19个字节；reserved是用来扩充bt协议的，占用8的字节；最后的两个的话是info_hash以及peer_id, 分别占用20个字节，所以总的占用字节数为1+19+8+20+20=68个字节。</p>
 <p>创建消息的共同点在于会先检测输出缓冲去的剩余大小是否大于等于消息的长度，如果是的话，才把信息写进输出缓冲区当中去。接着的话就是把信息写进缓冲区当中了，最后更新一下缓冲区的长度。</p>
 <p><strong>4， creat_keap_alive_msg(Peer  *peer)</strong></p>
-<p>keep_alive的信息长度固定，为4个字节，消息的格式为\&lt;len=0000&gt;。这个函数是让与peer没有数据交互的情况还保持连接，因为协议本身会检测，如果在两分钟之内和peer没有交互的话，程序会关闭与这个peer的连接。实现的很简单，在输出缓冲区有剩余的情况下把缓冲区的4位清空为0。</p>
+<p>keep_alive的信息长度固定，为4个字节，消息的格式为&lt;len=0000&gt;。这个函数是让与peer没有数据交互的情况还保持连接，因为协议本身会检测，如果在两分钟之内和peer没有交互的话，程序会关闭与这个peer的连接。实现的很简单，在输出缓冲区有剩余的情况下把缓冲区的4位清空为0。</p>
 <p><strong>5，int  creat_choke_interested_msg(int type, Peer  *peer)</strong></p>
-<p>根据type的内容创建choke信息, unchocke信息, interested信息以及not  interested消息当中的一个，四个所对应的值分别为0，1，2，3。他们四者有共同的信息格式\&lt;len=0001&gt;\<id>。</id></p>
+<p>根据type的内容创建choke信息, unchocke信息, interested信息以及not  interested消息当中的一个，四个所对应的值分别为0，1，2，3。他们四者有共同的信息格式&lt;len=0001&gt;<id>。</id></p>
 <p><strong>6，int  creat_have_msg(int  index,  Peer  *peer)</strong></p>
-<p>其实写到这里创建消息的方式都是一样的，先检测针对peer的输出缓冲区的剩余空间是否充足，然后把消息按照消息的格式写进缓冲区就可以了。这里的话先写下消息的格式吧：\&lt;len==0005>\&lt;id=4>\<piece index\>, 消息的长度为4+1+4=9个字节。</piece></p>
+<p>其实写到这里创建消息的方式都是一样的，先检测针对peer的输出缓冲区的剩余空间是否充足，然后把消息按照消息的格式写进缓冲区就可以了。这里的话先写下消息的格式吧：&lt;len==0005>&lt;id=4><piece index\>, 消息的长度为4+1+4=9个字节。</piece></p>
 <p><strong>7，int  creat_bitfield_msg(char  *bitfield,  int  bitfield_len,  Peer  *peer)</strong></p>
-<p>哦，反应过来，len的数值跟它后面的内容的长度是有关的。消息的格式为：\&lt;len=0001+x>\&lt;id=5>\&lt;bitfield>, x是位图信息的字节数。这里的话我们可以算下可以传递的最大字节数是998, 算下的话998*8=7984个piece的信息，而每个piece的大小我们假设为256kb的话，交换的最大信息量为1996Mb。哦买噶，错了错了，这里len的四位表示的是一个32位的整数啊，最大值不是9999,啊，还算错了，不改了，当作是给自己的一个提醒吧！</p>
+<p>哦，反应过来，len的数值跟它后面的内容的长度是有关的。消息的格式为：&lt;len=0001+x&gt;&lt;id=5&gt;<bitfield>, x是位图信息的字节数。这里的话我们可以算下可以传递的最大字节数是998, 算下的话998*8=7984个piece的信息，而每个piece的大小我们假设为256kb的话，交换的最大信息量为1996Mb。哦买噶，错了错了，这里len的四位表示的是一个32位的整数啊，最大值不是9999,啊，还算错了，不改了，当作是给自己的一个提醒吧！</bitfield></p>
 <p><strong>8， int  creat_request_msg(int index,  int  begin,  int  length, Peer  *peer)</strong></p>
-<p>创建request信息，请求peer第index个piece的，从第begin开始的长度为length的slice。格式的话是\&lt;len=0013>\&lt;id=6>\&lt;index>\&lt;begin>\&lt;length>。</p>
+<p>创建request信息，请求peer第index个piece的，从第begin开始的长度为length的slice。格式的话是&lt;len=0013&gt;&lt;id=6&gt;<index><begin><length>。</length></begin></index></p>
 <p><strong>9，int  creat_piece_msg(int index, int begin,  int  *block, int b_len, Peer *peer)</strong></p>
-<p>是针对于request信息的回复信息。格式的话就是\&lt;len=0009+x>\&lt;id=7>\&lt;index>\&lt;begin>\&lt;block>。这里的x对应的是block的长度。</p>
+<p>是针对于request信息的回复信息。格式的话就是&lt;len=0009+x&gt;&lt;id=7&gt;<index><begin><block>。这里的x对应的是block的长度。</block></begin></index></p>
 <p><strong>10，int  creat_cancle_msg(int index, int begin, int length, Peer, *peer)</strong></p>
-<p>撤销掉之前的request信息，跟request的信息的区别在于两者之间的编号吧！格式的话是\&lt;len=0013&gt;\&lt;id=8&gt;\<index>\<begin>\<length></length></begin></index></p>
+<p>撤销掉之前的request信息，跟request的信息的区别在于两者之间的编号吧！格式的话是&lt;len=0013&gt;&lt;id=8&gt;<index><begin><length></length></begin></index></p>
 <p><strong>11, int creat_port_msg(int port, Peer *peer)</strong></p>
-<p>消息的格式为：\&lt;len=0003&gt;\&lt;id=9&gt;\<listen-port>, 这里的话监听的端口号占用两个字节，也就是16位bit。而这个消息的一般不需要理会。</listen-port></p>
+<p>消息的格式为：&lt;len=0003&gt;&lt;id=9&gt;<listen-port>, 这里的话监听的端口号占用两个字节，也就是16位bit。而这个消息的一般不需要理会。</listen-port></p>
 <p><strong>12， int  is_complete_message(unsigned char *buff, unsigned int len, int *ok_len)</strong></p>
 <p>判断缓冲区有多少条完成的信息，通过ok_len返回最后一条完整信息的结束位置。程序的话先判断定长的信息，在判断不定长的信息，定长的信息的话结合常量表的技巧来判断，不定长的信息的话通过\<len>加上\<id>的信息来判断就可以了。</id></len></p>
 <p><strong>13，int  process_handshake_msg(Peer *peer, unsigned char *buff, int len)</strong></p>
