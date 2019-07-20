@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="MrLi的博客">
 <meta property="og:description" content="字典树的作用在于可以在o(len)的时间内找出目标字符串的前缀和本身，顺便还可以统计一下出现的次数。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-18T11:10:54.152Z">
+<meta property="og:updated_time" content="2019-07-19T04:51:15.836Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="trie">
 <meta name="twitter:description" content="字典树的作用在于可以在o(len)的时间内找出目标字符串的前缀和本身，顺便还可以统计一下出现的次数。">
@@ -177,6 +177,17 @@
       
         <p>字典树的作用在于可以在o(len)的时间内找出目标字符串的前缀和本身，顺便还可以统计一下出现的次数。</p>
 <a id="more"></a>
+<hr>
+<p>重看视频得到的一些新的认识：<br>在阐述一个新的算法的时候，可以通过<strong>画图的形式</strong>去分解算法的流程，像是在讲trie树的时候，yxc老师是这样讲的：先讲一下trie树适用于什么样的题型当中，其次的话通过一点一点的画出trie来说明是如何存储以及查找的，最后的就是代码实现的环节。</p>
+<p>这种方式的话适用于给别人讲解算法的思路以及自己可以给自己讲，帮助自己理顺算法的思路。</p>
+<p>其实的话，这个对应的是一个很常见的场景：<strong>就是你在面对一个完全不懂或者是一知半解的人的时候，如何一种通俗易懂的方式去讲解</strong>。自己在讲解的时候和看别人讲解的时候，有时候会忽略掉一些关键性的细节，这些细节的话对讲解的人来说很常见，而对于听的人来说的话是没有接触过的，这就好比常见的数学证明里的<strong>略</strong>。而比较能让人接受的方式有：<strong>举例子，打比方，画图，与同类事物间的对比等等</strong>。</p>
+<p>当自己在打代码的过程中出现变量或者操作不理解的情况，请试着把这个代入到例子相对应的地方去理解。</p>
+<p><code>在写代码的过程，一边写一边解释一下当前写的东西是什么</code>尝试一下hh。</p>
+<hr>
+<hr>
+<p>在重新思考trie树的实现时候，发现<code>idx</code>这个变量的含义自己原先理解不是很好。</p>
+<p><code>idx</code>常出现的地方是要通过数组的方式分配一个结点，比如链表结点的分配，trie树结点的分配等等，而<code>idx</code>通常指向的都是没有分配空间的数组下标，直观上思考的话，分配空间就是拿数组当中下标为<code>idx</code>的元素当成一个结点，如果是链表的情况的话，数组只有一维，里面存储的数是后继元素的下标，如果是树的情况，数组就是二维，第二维的每一个元素存储的是该节点的子节点所对应的数组下标。</p>
+<hr>
 <p>说下在写字典树的思路吧，先开一son[N][26]和idx, son的第一维跟我们字典树的节点数有关，而第二维的话，对应的是该节点的指针域，表示该字符的串的下一位在哪个角落呆着，至于idx的话，就是用来新建节点用的，记录这下一个空闲节点的位置。cnt[N]统计的是以这个节点作为末尾的字符串的数目有多少个。</p>
 <p>建树的思路很简单，先指向根节点，判断第一个字符的在根节点的指针域是否为空，为空的话，先新建一个节点，新建完之后把指针从根节点指向新建的节点，如果不为空的话，直接指向就可以了，重复以上的动作，直至遍历玩整个字符串。</p>
 <p>查询的思路的话，指针一直往后移动就行，如果碰到指针域为空的情况，就说明这个字符串就没有存在过，返回0就行了。</p>
@@ -184,7 +195,7 @@
 <p><strong>例题：最大异或对</strong></p>
 <p>题意：给定你n个数，让你找出当中的最大异或对。</p>
 <p>思路：因为要想让异或值尽可能的大，需要保证所找的数对应的位为0 1才行，因为相同的话，异或值为0，其次要从高位开始找，高位异或不同的话价值最大，一个可以顶其后面的所有不同的和。所以建树的话从高位开始存。查询的话也是从高位开始，如果有不同的话，从不同的那一条路径上走。</p>
-<p>期间出现的错误是son[][]一开始的话我是写作son[N][2], 这样写的话会出现段错误，原因是有N个数，每个数有32位，（忘记了节点是每个数的每一位），所以的最多有N*32个节点。</p>
+<p>期间出现的错误是son[][]一开始的话我是写作son[N][2], 这样写的话会出现段错误，原因是有N个数，每个数有32位，（忘记了节点是每个数的每一位），所以的话最多有N*32个节点。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[N], son[N*<span class="number">32</span>][<span class="number">2</span>], idx;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> p = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">31</span>; i&gt;=<span class="number">0</span>; i--)&#123;</span><br><span class="line">        <span class="keyword">int</span> u = (a&gt;&gt;i)&amp;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(!son[p][u]) son[p][u] = ++idx;</span><br><span class="line">        p = son[p][u];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> p=<span class="number">0</span>, res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">31</span>; i&gt;=<span class="number">0</span>; i--)&#123;</span><br><span class="line">        <span class="keyword">int</span> u = (a&gt;&gt;i)&amp;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(son[p][!u])&#123;</span><br><span class="line">            res |= <span class="number">1</span>&lt;&lt;i;</span><br><span class="line">            p = son[p][!u];</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            p = son[p][u];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</span><br><span class="line">        insert(a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">        res = max(res, query(a[i]));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, res);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -258,18 +269,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/18/moriss遍历/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/18/二分/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          moriss遍历
+          二分查找
         
       </div>
     </a>
   
   
-    <a href="/2019/07/18/栈，队列与单调队列/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">栈，队列与单调队列</div>
+    <a href="/2019/07/18/前缀和和差分/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前缀和和差分</div>
       <i class="icon-circle-right"></i>
     </a>
   

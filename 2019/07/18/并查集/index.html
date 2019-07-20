@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="MrLi的博客">
 <meta property="og:description" content="普通的并查集能够支持的操作是快速的判断一个元素是否属于某个集合和快速的合并两个集合。主要的核心操作是从每个集合选出一个代表元素代表该集合，判断是否在同一集合变为判断代表元素是否相同，合并集合变为两个集合的代表元素。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-18T11:22:23.793Z">
+<meta property="og:updated_time" content="2019-07-19T05:22:55.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="并查集">
 <meta name="twitter:description" content="普通的并查集能够支持的操作是快速的判断一个元素是否属于某个集合和快速的合并两个集合。主要的核心操作是从每个集合选出一个代表元素代表该集合，判断是否在同一集合变为判断代表元素是否相同，合并集合变为两个集合的代表元素。">
@@ -177,6 +177,11 @@
       
         <p>普通的并查集能够支持的操作是快速的判断一个元素是否属于某个集合和快速的合并两个集合。主要的核心操作是从每个集合选出一个代表元素代表该集合，判断是否在同一集合变为判断代表元素是否相同，合并集合变为两个集合的代表元素。</p>
 <a id="more"></a>
+<hr>
+<p>这个算法的理解也是通过<code>画图</code>的方式去理解。自己尝试了一下纯用话的方式去讲解的话，会发现一些简洁的思路我们需要花费很多话去阐述，而以<code>画图</code>的形式去阐述的话，所花费的语言会更短，原因是这个图本身就帮助我们省略一下图所自带的信息，比如假设我们现在画出一棵树的话，它就自带了这样的信息：节点存在一对多的关系，某一个节点到达根节点的距离是多少，两个点是不是属于同一个集合等等，还有一个好处是以<code>画图</code>的方式去理解这道题的话，它比起用语言描述去理解能给你带来解题上的思路。</p>
+<p>可以得出的<code>结论</code>：当在学习数据结构的时候，先以图的方式去理解这个数据结构本身是长什么样的，而对于该数据结构的操作可以转换成该图形本身是如何变化的。</p>
+<p><strong>其实的话这个也涉及到人的记忆：脑科学指出人的工作记忆容量其实很小，这样的话比起纯文字来说，由于图本身所外带的信息，思考图所占的脑容量就比较小了</strong></p>
+<hr>
 <p>//17:35</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> fa[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(fa[x] != x) fa[x] = find(fa[x]);</span><br><span class="line">    <span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">char</span> op[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">int</span> a, b;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=n; i++) fa[i] = i;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%s%d%d"</span>, op, &amp;a, &amp;b);</span><br><span class="line">        <span class="keyword">if</span>(op[<span class="number">0</span>] == <span class="string">'M'</span>)&#123;</span><br><span class="line">            fa[find(a)] = find(b);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(find(a) == find(b)) <span class="built_in">puts</span>(<span class="string">"Yes"</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"No"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>例题：连通块点的数量</strong></p>
@@ -259,18 +264,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/18/链表/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/18/双指针算法/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          链表
+          双指针算法
         
       </div>
     </a>
   
   
-    <a href="/2019/07/18/归并排序/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">归并排序</div>
+    <a href="/2019/07/18/哈希表/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">哈希表</div>
       <i class="icon-circle-right"></i>
     </a>
   
