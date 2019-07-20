@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>搜索与图论（一） | MrLi的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天讲解的知识点有以下几部分：  树与图的存储  树与图的dfs  树与图的bfs  拓扑排序   dfs搜索的过程从一棵树的角度去看的话，是从根节点出发，一直往叶子节点的方向去走，直到走到了叶子节点之后才往上返回继续往下走；而bfs的话，是一层一层的往下走的，最后一层永远是最后才遍历到的。    方式 用到的数据结构 所花费的空间 是否可求最短距离     dfs 栈 o(h) 不可以   bf">
+  <meta name="description" content="今天讲解的知识点有以下几部分：  树与图的存储  树与图的dfs  树与图的bfs  拓扑排序">
 <meta name="keywords" content="好奇 憨 热爱学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搜索与图论（一）">
 <meta property="og:url" content="http://yoursite.com/2019/07/20/搜索与图论（一）/index.html">
 <meta property="og:site_name" content="MrLi的博客">
-<meta property="og:description" content="今天讲解的知识点有以下几部分：  树与图的存储  树与图的dfs  树与图的bfs  拓扑排序   dfs搜索的过程从一棵树的角度去看的话，是从根节点出发，一直往叶子节点的方向去走，直到走到了叶子节点之后才往上返回继续往下走；而bfs的话，是一层一层的往下走的，最后一层永远是最后才遍历到的。    方式 用到的数据结构 所花费的空间 是否可求最短距离     dfs 栈 o(h) 不可以   bf">
+<meta property="og:description" content="今天讲解的知识点有以下几部分：  树与图的存储  树与图的dfs  树与图的bfs  拓扑排序">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-20T05:38:32.092Z">
+<meta property="og:updated_time" content="2019-07-20T05:40:40.094Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搜索与图论（一）">
-<meta name="twitter:description" content="今天讲解的知识点有以下几部分：  树与图的存储  树与图的dfs  树与图的bfs  拓扑排序   dfs搜索的过程从一棵树的角度去看的话，是从根节点出发，一直往叶子节点的方向去走，直到走到了叶子节点之后才往上返回继续往下走；而bfs的话，是一层一层的往下走的，最后一层永远是最后才遍历到的。    方式 用到的数据结构 所花费的空间 是否可求最短距离     dfs 栈 o(h) 不可以   bf">
+<meta name="twitter:description" content="今天讲解的知识点有以下几部分：  树与图的存储  树与图的dfs  树与图的bfs  拓扑排序">
   
     <link rel="alternative" href="/atom.xml" title="MrLi的博客" type="application/atom+xml">
   
@@ -186,6 +186,7 @@
 <li><p>拓扑排序</p>
 </li>
 </ul>
+<a id="more"></a>
 <p><code>dfs</code>搜索的过程从一棵树的角度去看的话，是从根节点出发，一直往叶子节点的方向去走，直到走到了叶子节点之后才往上返回继续往下走；而<code>bfs</code>的话，是一层一层的往下走的，最后一层永远是最后才遍历到的。</p>
 <table>
 <thead>
