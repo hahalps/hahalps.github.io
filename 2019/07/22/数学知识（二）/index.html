@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>马拉车算法 | MrLi的博客</title>
+  <title>数学知识（二） | MrLi的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="emmm…马拉什么车啊啊啊啊 马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。">
+  <meta name="description" content="今天所讲的内容有以下几部分：  欧拉函数 欧拉定理 快速幂 快速幂求逆元 扩展欧几里得算法 线性同余方程">
 <meta name="keywords" content="好奇 憨 热爱学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="马拉车算法">
-<meta property="og:url" content="http://yoursite.com/2019/07/18/马拉车算法/index.html">
+<meta property="og:title" content="数学知识（二）">
+<meta property="og:url" content="http://yoursite.com/2019/07/22/数学知识（二）/index.html">
 <meta property="og:site_name" content="MrLi的博客">
-<meta property="og:description" content="emmm…马拉什么车啊啊啊啊 马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。">
+<meta property="og:description" content="今天所讲的内容有以下几部分：  欧拉函数 欧拉定理 快速幂 快速幂求逆元 扩展欧几里得算法 线性同余方程">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-18T11:16:57.544Z">
+<meta property="og:updated_time" content="2019-07-22T07:50:18.006Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="马拉车算法">
-<meta name="twitter:description" content="emmm…马拉什么车啊啊啊啊 马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。">
+<meta name="twitter:title" content="数学知识（二）">
+<meta name="twitter:description" content="今天所讲的内容有以下几部分：  欧拉函数 欧拉定理 快速幂 快速幂求逆元 扩展欧几里得算法 线性同余方程">
   
     <link rel="alternative" href="/atom.xml" title="MrLi的博客" type="application/atom+xml">
   
@@ -155,33 +155,121 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-马拉车算法" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-数学知识（二）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      马拉车算法
+      数学知识（二）
     </h1>
   
 
         
-        <a href="/2019/07/18/马拉车算法/" class="archive-article-date">
-  	<time datetime="2019-07-18T11:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
+        <a href="/2019/07/22/数学知识（二）/" class="archive-article-date">
+  	<time datetime="2019-07-22T05:52:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>emmm…马拉什么车啊啊啊啊</p>
-<p>马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。</p>
+        <p><strong>今天所讲的内容有以下几部分</strong>：</p>
+<blockquote>
+<p>欧拉函数</p>
+<p>欧拉定理</p>
+<p>快速幂</p>
+<p>快速幂求逆元</p>
+<p>扩展欧几里得算法</p>
+<p>线性同余方程</p>
+</blockquote>
 <a id="more"></a>
-<p>第一步的先预处理下待求的字符串，处理的方式在字符串的开头，结尾和每两个位置之间都插入一个不同于字符串里面的字符的一个字符，在这里的话，我插入的是’#’,还有我感觉到比较有意思的地方在于在开头再插入一个字符’$’, 插入了这个字符后，我暴力扩边界的时候就不用判断越界了。</p>
-<p>第二步的话考虑当前位置i，如果不在回文半径里面的话，我们就没有可以利用的信息，只能把回文半径设为1暴力扩了。如果在回文半径里面的话，我们可以根据回文中心求出当前关于位置i关于回文中心的对称点，并得到他的回文半径是多少，假设为len, 如果i+len&lt;=r，说明当前位置i的回文半径就为len, （如果可以更大的话，他的对称点的回文中心只会更大，也可以通过画图得出结论）下面的暴力扩也是没事的，因为一扩的条件就为负退出循环；如果i+len&gt;r的话，因为超过回文半径的范围，所以只能设为r-i，并且尝试暴力扩下边界</p>
-<p>第三步的话记得更新一下回文半径和回文中心。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> str[N], s[N];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> h[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">manacher</span><span class="params">(<span class="keyword">char</span> *s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mx = <span class="number">0</span>, r = <span class="number">0</span>, res = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; s[i] ; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&lt;r) h[i] = min(r-i, h[<span class="number">2</span>*mx-i]);</span><br><span class="line">        <span class="keyword">else</span> h[i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(s[i-h[i]] == s[i+h[i]]) h[i]++;<span class="comment">//暴力扩边界</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(i+h[i]&gt;r)&#123;</span><br><span class="line">            r = i+h[i];</span><br><span class="line">            mx = i;</span><br><span class="line">            res = max(res, h[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>, str);</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">1</span>;    </span><br><span class="line">    <span class="built_in">memset</span>(s, <span class="number">0</span>, <span class="keyword">sizeof</span> s);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; str[i]; i++)&#123;</span><br><span class="line">        s[len++] = <span class="string">'#'</span>;</span><br><span class="line">        s[len++] = str[i];</span><br><span class="line">    &#125;</span><br><span class="line">    s[<span class="number">0</span>] = <span class="string">'$'</span>;</span><br><span class="line">    s[len] = <span class="string">'#'</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, s);</span><br><span class="line">    <span class="keyword">int</span> ans = manacher(s);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>欧拉函数</strong></p>
+<p><code>理解</code>：</p>
+<ul>
+<li><p>欧拉函数求的是<code>1</code>到<code>n-1</code>中有多少个与n互质的个数；</p>
+</li>
+<li><p>$phi(n) = n<em>(1-1/p1)</em>(1-1/p2)<em>….</em>(1-1/pk)$；</p>
+</li>
+<li><p>p1, p2…pk是n的质因数；</p>
+</li>
+<li><p>证明用到的是容斥原理</p>
+</li>
+</ul>
+<p><code>代码实现</code>：$O(sqrt(n))$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">phi</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=n/i; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(n%i==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span>(n%i==<span class="number">0</span>) n/=i;</span><br><span class="line">            res = res - res/i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n&gt;<span class="number">1</span>) res = res - res/n;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        <span class="keyword">int</span> a;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; phi(a) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>筛法求欧拉函数</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li><p>是在求线性筛的时候求每个数的欧拉函数，求的时候会出现三种情况；</p>
+</li>
+<li><p>当i为质数的时候，它所对应的值为<code>i-1</code>;</p>
+</li>
+<li><p>当primes[j]不是i的最小质因数的时候, 对应的值为<code>ph[i]*prime[j]*(1-1/primes[j])</code></p>
+</li>
+<li><p>当primes[j]是i的最小质因数的时候，对应的值为<code>ph[i]*prime[j]*</code></p>
+</li>
+</ul>
+<p><code>代码实现</code>：$O(n)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e6</span>+<span class="number">19</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> primes[N], cnt;</span><br><span class="line"><span class="keyword">int</span> phi[N];</span><br><span class="line"><span class="keyword">bool</span> st[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_phi</span><span class="params">()</span></span>&#123;</span><br><span class="line">    phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;N; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!st[i])&#123;</span><br><span class="line">            primes[cnt++] = i;</span><br><span class="line">            phi[i] = i<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;cnt &amp;&amp; primes[j]*i&lt;N; j++)&#123;</span><br><span class="line">            st[i*primes[j]] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span>(i%primes[j] == <span class="number">0</span>) &#123;</span><br><span class="line">                phi[i*primes[j]] = phi[i] * primes[j];</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            phi[i*primes[j]] = phi[i] * (primes[j] - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    get_phi();</span><br><span class="line">    <span class="keyword">int</span> n; </span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) sum += phi[i];</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; sum &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>欧拉定理</strong></p>
+<ul>
+<li><p>如果a与n互质的话，a的<code>n的欧拉数次幂</code>模n为1；</p>
+</li>
+<li><p>证明:可以构造出<code>与n互质的数的乘积</code>在模n的意义下等价于<code>a的n的欧拉数次幂</code>乘以<code>与n互质的数的乘积</code>；</p>
+</li>
+<li><p>好绕啊，等学会了latex之后再把上面的语言转换成数学语言；</p>
+</li>
+<li><p>费马小定理是欧拉定理中<code>n为质数</code>时的特例。</p>
+</li>
+</ul>
+<p><strong>快速幂</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li><p>利用的是对指数进行二进制分解；</p>
+</li>
+<li><p>如果计算的时候超了数的范围，可以尝试用快速和。</p>
+</li>
+</ul>
+<p><code>代码实现</code>：$O(log(n))$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">qmod</span><span class="params">(LL a, LL b, LL p)</span></span>&#123;</span><br><span class="line">     <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">     <span class="keyword">while</span>(b)&#123;</span><br><span class="line">         <span class="keyword">if</span>(b&amp;<span class="number">1</span>) res = res * a % p;</span><br><span class="line">         a = a * a % p;</span><br><span class="line">         b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        <span class="keyword">int</span> a, b, p;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; p;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; qmod(a, b, p) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>快速幂求逆元</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li><p>逆元的含义：对于a, m来说，找到一个b,，使得ab的乘积在模m的意义下结果为1。类似与小学算术的<code>1/a</code>。</p>
+</li>
+<li><p>快速幂求逆元的前提条件是<code>m</code>为质数；</p>
+</li>
+<li><p>利用到的公式是费马小定理。</p>
+</li>
+</ul>
+<p><code>代码实现</code>：$O(log(n))$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">qmod</span><span class="params">(LL a, LL b, LL p)</span></span>&#123;</span><br><span class="line">     LL res = <span class="number">1</span>;</span><br><span class="line">     <span class="keyword">while</span>(b)&#123;</span><br><span class="line">         <span class="keyword">if</span>(b&amp;<span class="number">1</span>) res = res * a % p;</span><br><span class="line">         a = a * a % p;</span><br><span class="line">         b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        <span class="keyword">int</span> a, p;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; p;</span><br><span class="line">        LL res = qmod(a, p<span class="number">-2</span>, p);</span><br><span class="line">        <span class="keyword">if</span>(res*a%p == <span class="number">0</span>) <span class="built_in">puts</span>(<span class="string">"impossible"</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, res);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>扩展欧几里得算法</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li><p>在递归计算最大公约数的时候变换<code>ab</code>的系数；</p>
+</li>
+<li><p>递归到<code>b==0</code>的时候return的是<code>a</code>,而这是<code>ab</code>的系数分别为1，0；</p>
+</li>
+<li><p>现在考虑的是如何往上返回是系数的变化，这个的话可以通过在草稿上模拟头两次的系数变换就可以总结出规律。</p>
+</li>
+<li><p>证明的话：ax+by=d，d应该是(a,b)的最大公约数的倍数,而扩展欧几里得算法保证了我们可以构造出一个最小的解（存在性问题）。</p>
+</li>
+</ul>
+<p><code>代码实现</code>：$O(log(n))$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!b)&#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> d = exgcd(b, a%b, x, y);</span><br><span class="line">    <span class="keyword">int</span> t = x;</span><br><span class="line">    x = y;</span><br><span class="line">    y = t - a/b*y;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        <span class="keyword">int</span> a, b;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b);</span><br><span class="line">        <span class="keyword">int</span> x, y;</span><br><span class="line">        exgcd(a, b, x, y);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, x, y);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>线性同余方程</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li><p>对方程<code>ax=b mod m</code>进行转换，转换成：<code>ax+my=b</code>，问题就变成判断这个方程是否有解，有解的话输出x的值就行了；</p>
+</li>
+<li><p>注意一下结果的范围。</p>
+</li>
+</ul>
+<p><code>代码实现</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!b)&#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> d = exgcd(b, a%b, y, x);</span><br><span class="line">    y -= a/b*x;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="keyword">int</span> a, b, m;</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        <span class="keyword">int</span> x, y;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;m);</span><br><span class="line">        <span class="keyword">int</span> d = exgcd(a, m, x, y);</span><br><span class="line">        <span class="keyword">if</span>(b%d) <span class="built_in">puts</span>(<span class="string">"impossible"</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, (<span class="keyword">long</span> <span class="keyword">long</span>)x*(b/d)%m);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -240,7 +328,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/18/马拉车算法/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/22/数学知识（二）/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -254,18 +342,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/18/高精度/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/22/数学知识（三）/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          高精度
+          数学知识（三）
         
       </div>
     </a>
   
   
-    <a href="/2019/07/18/栈，队列与单调队列/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">栈，队列与单调队列</div>
+    <a href="/2019/07/22/棋盘覆盖问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">棋盘覆盖问题</div>
       <i class="icon-circle-right"></i>
     </a>
   

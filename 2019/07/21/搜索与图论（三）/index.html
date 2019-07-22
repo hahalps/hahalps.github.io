@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>马拉车算法 | MrLi的博客</title>
+  <title>搜索与图论（三） | MrLi的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="emmm…马拉什么车啊啊啊啊 马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。">
+  <meta name="description" content="这章的话是有关搜索与图论的最后一章咯。">
 <meta name="keywords" content="好奇 憨 热爱学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="马拉车算法">
-<meta property="og:url" content="http://yoursite.com/2019/07/18/马拉车算法/index.html">
+<meta property="og:title" content="搜索与图论（三）">
+<meta property="og:url" content="http://yoursite.com/2019/07/21/搜索与图论（三）/index.html">
 <meta property="og:site_name" content="MrLi的博客">
-<meta property="og:description" content="emmm…马拉什么车啊啊啊啊 马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。">
+<meta property="og:description" content="这章的话是有关搜索与图论的最后一章咯。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-18T11:16:57.544Z">
+<meta property="og:updated_time" content="2019-07-21T13:50:05.618Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="马拉车算法">
-<meta name="twitter:description" content="emmm…马拉什么车啊啊啊啊 马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。">
+<meta name="twitter:title" content="搜索与图论（三）">
+<meta name="twitter:description" content="这章的话是有关搜索与图论的最后一章咯。">
   
     <link rel="alternative" href="/atom.xml" title="MrLi的博客" type="application/atom+xml">
   
@@ -155,33 +155,130 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-马拉车算法" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-搜索与图论（三）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      马拉车算法
+      搜索与图论（三）
     </h1>
   
 
         
-        <a href="/2019/07/18/马拉车算法/" class="archive-article-date">
-  	<time datetime="2019-07-18T11:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
+        <a href="/2019/07/21/搜索与图论（三）/" class="archive-article-date">
+  	<time datetime="2019-07-21T09:52:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>emmm…马拉什么车啊啊啊啊</p>
-<p>马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。</p>
+        <p>这章的话是有关搜索与图论的最后一章咯。</p>
 <a id="more"></a>
-<p>第一步的先预处理下待求的字符串，处理的方式在字符串的开头，结尾和每两个位置之间都插入一个不同于字符串里面的字符的一个字符，在这里的话，我插入的是’#’,还有我感觉到比较有意思的地方在于在开头再插入一个字符’$’, 插入了这个字符后，我暴力扩边界的时候就不用判断越界了。</p>
-<p>第二步的话考虑当前位置i，如果不在回文半径里面的话，我们就没有可以利用的信息，只能把回文半径设为1暴力扩了。如果在回文半径里面的话，我们可以根据回文中心求出当前关于位置i关于回文中心的对称点，并得到他的回文半径是多少，假设为len, 如果i+len&lt;=r，说明当前位置i的回文半径就为len, （如果可以更大的话，他的对称点的回文中心只会更大，也可以通过画图得出结论）下面的暴力扩也是没事的，因为一扩的条件就为负退出循环；如果i+len&gt;r的话，因为超过回文半径的范围，所以只能设为r-i，并且尝试暴力扩下边界</p>
-<p>第三步的话记得更新一下回文半径和回文中心。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> str[N], s[N];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> h[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">manacher</span><span class="params">(<span class="keyword">char</span> *s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mx = <span class="number">0</span>, r = <span class="number">0</span>, res = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; s[i] ; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&lt;r) h[i] = min(r-i, h[<span class="number">2</span>*mx-i]);</span><br><span class="line">        <span class="keyword">else</span> h[i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(s[i-h[i]] == s[i+h[i]]) h[i]++;<span class="comment">//暴力扩边界</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(i+h[i]&gt;r)&#123;</span><br><span class="line">            r = i+h[i];</span><br><span class="line">            mx = i;</span><br><span class="line">            res = max(res, h[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>, str);</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">1</span>;    </span><br><span class="line">    <span class="built_in">memset</span>(s, <span class="number">0</span>, <span class="keyword">sizeof</span> s);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; str[i]; i++)&#123;</span><br><span class="line">        s[len++] = <span class="string">'#'</span>;</span><br><span class="line">        s[len++] = str[i];</span><br><span class="line">    &#125;</span><br><span class="line">    s[<span class="number">0</span>] = <span class="string">'$'</span>;</span><br><span class="line">    s[len] = <span class="string">'#'</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, s);</span><br><span class="line">    <span class="keyword">int</span> ans = manacher(s);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>讲解的知识点</strong>：</p>
+<ul>
+<li><p>最小生成树</p>
+</li>
+<li><p>二分图</p>
+</li>
+</ul>
+<p><strong>最小生成树的两种算法比较</strong>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">算法</th>
+<th style="text-align:center">算法的时间复杂度</th>
+<th style="text-align:center">适用范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">prim算法</td>
+<td style="text-align:center">$O(n^2)$</td>
+<td style="text-align:center">稠密图</td>
+</tr>
+<tr>
+<td style="text-align:center">kruskal算法</td>
+<td style="text-align:center">$O(mlogm)$</td>
+<td style="text-align:center">稀疏图</td>
+</tr>
+</tbody>
+</table>
+<p><strong>prim算法</strong></p>
+<p>prim算法的思路跟dijksta算法的思路十分相似，不同的地方在于dijkstra算法维护的是起点到某一个点之间的距离，而prim算法的话维护的是以构成最小生树的点集合到达其他点的距离。</p>
+<p><code>算法实现思路</code>：</p>
+<ul>
+<li><p>从未在构成生成树的点中选择出一个到达构成生成树点集合距离最小的点；</p>
+</li>
+<li><p>把上述的点加入到构成生成树的点集合当中，并用该点去更新其他未在点集合的点到达生成树的距离；</p>
+</li>
+<li><p>重复以上的过程直至构成生成树的点集合的数量为n.</p>
+</li>
+</ul>
+<p><code>代码实现</code>：$O(n^2)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">510</span>, INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> g[N][N];</span><br><span class="line"><span class="keyword">int</span> dist[N];</span><br><span class="line"><span class="keyword">bool</span> st[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">prim</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(dist, <span class="number">0x3f</span>, <span class="keyword">sizeof</span> dist);</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> t = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=n; j++)</span><br><span class="line">            <span class="keyword">if</span>(!st[j] &amp;&amp; (t==<span class="number">-1</span> || dist[t]&gt;dist[j]))</span><br><span class="line">                t = j;</span><br><span class="line">        <span class="keyword">if</span>(i &amp;&amp; dist[t] == INF) <span class="keyword">return</span> INF;</span><br><span class="line">        <span class="keyword">if</span>(i) res += dist[t];</span><br><span class="line">        st[t] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=n; j++)</span><br><span class="line">            <span class="keyword">if</span>(!st[j]) dist[j] = min(dist[j], g[t][j]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">int</span> a, b, c;</span><br><span class="line">    <span class="built_in">memset</span>(g, <span class="number">0x3f</span>, <span class="keyword">sizeof</span> g);</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;c);</span><br><span class="line">        g[a][b] = g[b][a] = min(g[a][b], c);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> t = prim();</span><br><span class="line">    <span class="keyword">if</span>(t == INF) <span class="built_in">puts</span>(<span class="string">"impossible"</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, t);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>kruskal算法</strong></p>
+<p><code>算法思路</code>：</p>
+<ul>
+<li><p>将所有的边按照权重从小到大排序；</p>
+</li>
+<li><p>遍历所有的边，当发现边的两个端点不在同一个集合的时候，这条边就是最小生成树上的边，累计这条边的权重并把两个端点并到同一个集合。</p>
+</li>
+</ul>
+<p><code>代码实现</code>：$O(mlogm)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>, M = <span class="number">2e5</span>+<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> fa[N];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> a, b, w;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Edge&amp; n)<span class="keyword">const</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> w &lt; n.w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;edges[M];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x != fa[x]) fa[x] = find(fa[x]);</span><br><span class="line">    <span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">int</span> a, b, w;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=n; i++) fa[i] = i;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;w);</span><br><span class="line">        edges[i] = &#123;a, b, w&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(edges, edges+m);</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>, cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)&#123;</span><br><span class="line">        a = edges[i].a, b = edges[i].b, w = edges[i].w;</span><br><span class="line">        a = find(a);</span><br><span class="line">        b = find(b);</span><br><span class="line">        <span class="keyword">if</span>(a != b)&#123;</span><br><span class="line">            fa[a] = b;</span><br><span class="line">            res += w;</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(cnt == n<span class="number">-1</span>) <span class="built_in">printf</span>(<span class="string">"%d"</span>, res);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"impossible"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>二分图</strong></p>
+<p>下面列的信息是要讲算法的<code>基本信息</code>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">算法</th>
+<th style="text-align:center">时间复杂度</th>
+<th style="text-align:center">其他描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">染色法</td>
+<td style="text-align:center">$O(n+m)$</td>
+<td style="text-align:center">判断一个图是不是二分图</td>
+</tr>
+<tr>
+<td style="text-align:center">匈牙利算法</td>
+<td style="text-align:center">最坏$O(nm)$,一般情况远小于最坏情况</td>
+<td style="text-align:center">求一个二分图的最大匹配数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>染色法</strong></p>
+<p><code>算法思路</code>：</p>
+<ul>
+<li><p>遍历所有的点，针对没有被染色的点先把这个点染成1号颜色的点，再通过dfs把跟这个的点相邻所有点进行染色；</p>
+</li>
+<li><p>如果相邻点没有被染色的话，把这个点染成<code>3-c</code>号颜色，再继续dfs进行染色；</p>
+</li>
+<li><p>如果相邻点被染色了，判断这个点跟相邻点的颜色是否一样，一样的话就代表这个图不是二分图。</p>
+</li>
+</ul>
+<p><code>代码实现</code>：$O(n+m)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">2e5</span>+<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> h[N], e[N], ne[N], idx;</span><br><span class="line"><span class="keyword">int</span> color[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    e[idx] = b; ne[idx] = h[a]; h[a] = idx++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">    color[u] = c;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=h[u]; ~i; i=ne[i])&#123;</span><br><span class="line">        <span class="keyword">int</span> j = e[i];</span><br><span class="line">        <span class="keyword">if</span>(!color[j])&#123;</span><br><span class="line">            <span class="keyword">if</span>(!dfs(j, <span class="number">3</span>-c)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(color[j] == c) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a, b;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="built_in">memset</span>(h, <span class="number">-1</span>, <span class="keyword">sizeof</span> h);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b);</span><br><span class="line">        add(a, b);</span><br><span class="line">        add(b, a);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> f = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">        <span class="keyword">if</span>(!color[i])&#123;</span><br><span class="line">            <span class="keyword">if</span>(!dfs(i, <span class="number">1</span>))&#123;</span><br><span class="line">                f = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(f) <span class="built_in">puts</span>(<span class="string">"Yes"</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"No"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>匈牙利算法</strong></p>
+<p>匈牙利算法的精髓在于一个“挪”字，当发现一个坑已经被人占据的时候，先让占据坑的人去寻找有没有其他坑供他占据，如果有的话，那么总的占坑数就加一了。没有的话那就算了。</p>
+<p><code>算法思路</code>：</p>
+<ul>
+<li><p>对于每一个点，考虑跟他相邻的点；</p>
+</li>
+<li><p>如果这个点没有被占据过，就直接占据这个点就行了；</p>
+</li>
+<li><p>如果这个点被占据的话，尝试是否可以把占据这个点的点给挪开，如果可以的话，就占据这个点就行了；如果不行的话，考虑下一个点；</p>
+</li>
+<li><p>重复以上的过程直至所有点都被考虑过。</p>
+</li>
+</ul>
+<p><code>代码实现</code>：一般情况好于$O(nm)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">510</span>, M = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n1, n2, m;</span><br><span class="line"><span class="keyword">int</span> h[N], e[M], ne[M], idx;</span><br><span class="line"><span class="keyword">int</span> match[N];</span><br><span class="line"><span class="keyword">bool</span> st[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    e[idx] = b; ne[idx] = h[a]; h[a] = idx++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=h[x]; ~i; i=ne[i])&#123;</span><br><span class="line">        <span class="keyword">int</span> j = e[i];</span><br><span class="line">        <span class="keyword">if</span>(!st[j])&#123;</span><br><span class="line">            st[j] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span>(!match[j] || find(match[j]))&#123;</span><br><span class="line">                match[j] = x;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a, b;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;n1, &amp;n2, &amp;m);</span><br><span class="line">    <span class="built_in">memset</span>(h, <span class="number">-1</span>, <span class="keyword">sizeof</span> h);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b);</span><br><span class="line">        add(a, b);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n1; i++)&#123;</span><br><span class="line">        <span class="built_in">memset</span>(st, <span class="literal">false</span>, <span class="keyword">sizeof</span> st);</span><br><span class="line">        <span class="keyword">if</span>(find(i)) res++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, res);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -240,7 +337,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/18/马拉车算法/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/21/搜索与图论（三）/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -254,18 +351,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/18/高精度/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/21/数学知识（一）/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          高精度
+          数学知识（一）
         
       </div>
     </a>
   
   
-    <a href="/2019/07/18/栈，队列与单调队列/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">栈，队列与单调队列</div>
+    <a href="/2019/07/21/小Q爬塔/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">小Q爬塔</div>
       <i class="icon-circle-right"></i>
     </a>
   

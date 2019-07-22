@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>马拉车算法 | MrLi的博客</title>
+  <title>小Q爬塔 | MrLi的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="emmm…马拉什么车啊啊啊啊 马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。">
+  <meta name="description" content="腾讯面试题-小Q爬塔">
 <meta name="keywords" content="好奇 憨 热爱学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="马拉车算法">
-<meta property="og:url" content="http://yoursite.com/2019/07/18/马拉车算法/index.html">
+<meta property="og:title" content="小Q爬塔">
+<meta property="og:url" content="http://yoursite.com/2019/07/21/小Q爬塔/index.html">
 <meta property="og:site_name" content="MrLi的博客">
-<meta property="og:description" content="emmm…马拉什么车啊啊啊啊 马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。">
+<meta property="og:description" content="腾讯面试题-小Q爬塔">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-18T11:16:57.544Z">
+<meta property="og:updated_time" content="2019-07-21T01:30:54.108Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="马拉车算法">
-<meta name="twitter:description" content="emmm…马拉什么车啊啊啊啊 马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。">
+<meta name="twitter:title" content="小Q爬塔">
+<meta name="twitter:description" content="腾讯面试题-小Q爬塔">
   
     <link rel="alternative" href="/atom.xml" title="MrLi的博客" type="application/atom+xml">
   
@@ -155,33 +155,35 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-马拉车算法" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-小Q爬塔" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      马拉车算法
+      小Q爬塔
     </h1>
   
 
         
-        <a href="/2019/07/18/马拉车算法/" class="archive-article-date">
-  	<time datetime="2019-07-18T11:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
+        <a href="/2019/07/21/小Q爬塔/" class="archive-article-date">
+  	<time datetime="2019-07-21T01:27:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>emmm…马拉什么车啊啊啊啊</p>
-<p>马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。</p>
+        <p><strong>腾讯面试题-小Q爬塔</strong></p>
 <a id="more"></a>
-<p>第一步的先预处理下待求的字符串，处理的方式在字符串的开头，结尾和每两个位置之间都插入一个不同于字符串里面的字符的一个字符，在这里的话，我插入的是’#’,还有我感觉到比较有意思的地方在于在开头再插入一个字符’$’, 插入了这个字符后，我暴力扩边界的时候就不用判断越界了。</p>
-<p>第二步的话考虑当前位置i，如果不在回文半径里面的话，我们就没有可以利用的信息，只能把回文半径设为1暴力扩了。如果在回文半径里面的话，我们可以根据回文中心求出当前关于位置i关于回文中心的对称点，并得到他的回文半径是多少，假设为len, 如果i+len&lt;=r，说明当前位置i的回文半径就为len, （如果可以更大的话，他的对称点的回文中心只会更大，也可以通过画图得出结论）下面的暴力扩也是没事的，因为一扩的条件就为负退出循环；如果i+len&gt;r的话，因为超过回文半径的范围，所以只能设为r-i，并且尝试暴力扩下边界</p>
-<p>第三步的话记得更新一下回文半径和回文中心。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> str[N], s[N];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> h[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">manacher</span><span class="params">(<span class="keyword">char</span> *s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mx = <span class="number">0</span>, r = <span class="number">0</span>, res = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; s[i] ; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&lt;r) h[i] = min(r-i, h[<span class="number">2</span>*mx-i]);</span><br><span class="line">        <span class="keyword">else</span> h[i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(s[i-h[i]] == s[i+h[i]]) h[i]++;<span class="comment">//暴力扩边界</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(i+h[i]&gt;r)&#123;</span><br><span class="line">            r = i+h[i];</span><br><span class="line">            mx = i;</span><br><span class="line">            res = max(res, h[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>, str);</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">1</span>;    </span><br><span class="line">    <span class="built_in">memset</span>(s, <span class="number">0</span>, <span class="keyword">sizeof</span> s);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; str[i]; i++)&#123;</span><br><span class="line">        s[len++] = <span class="string">'#'</span>;</span><br><span class="line">        s[len++] = str[i];</span><br><span class="line">    &#125;</span><br><span class="line">    s[<span class="number">0</span>] = <span class="string">'$'</span>;</span><br><span class="line">    s[len] = <span class="string">'#'</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, s);</span><br><span class="line">    <span class="keyword">int</span> ans = manacher(s);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>题意大概是这样的：给定你n层塔，每层塔有固定的高度，定义你所花费的时间为所爬塔的高度，而现在有个骚操作-可认为黑魔法，你可以一次性跨过一层或者是两层塔，这中间不会产生花费，但是你使用这个操作之后就需要停下来爬一层才可以使用黑魔法，问你最少花多长的时间能爬完这n层塔</p>
+<p>这个问题是个dp问题，先明白问题求的是什么：爬完n层塔所花费的最小时间，其次到达第n层塔的方式有几种？两种，第一种是爬上来的，第二种的话是从第n-1层或者是第n-2层使用黑魔法跳上来的。（以上的询问确定了这个问题有什么样的状态）</p>
+<p>接着考虑的东西就是状态之间是怎么转移的？</p>
+<p>针对第一种爬上来的  <code>p[n] = min{p[n-1],  f[n-1]} + a[n]</code></p>
+<p>针对第二种是跳上来的 <code>f[n] = min{p[n-1], p[n-2]}</code></p>
+<p>说明一下 <code>p[n]</code>指的是第n层是爬上来所花费的最小代价，<code>f[n]</code>表示的是第n层是跳上来所花费的最小代价，对于<code>p[n]</code>，他可以是第n-1层爬上来的状态和第n-1层是跳上来的状态两者取最小再加上爬上第n层的代价，<code>f[n]</code>的话因为这一步是跳过来的，所以之前的状态只能是爬的状态转移过来的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#incldue<span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">100010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> p[N], f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; x;</span><br><span class="line">        p[i] = min(p[i<span class="number">-1</span>], f[i<span class="number">-1</span>]) + x;</span><br><span class="line">        <span class="keyword">if</span>(i&lt;=<span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">        f[i] = min(p[i<span class="number">-1</span>], p[i<span class="number">-2</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; min(f[n], p[n]) &lt;&lt; <span class="built_in">endl</span>; </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -240,7 +242,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/18/马拉车算法/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/21/小Q爬塔/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -254,18 +256,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/18/高精度/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/21/搜索与图论（三）/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          高精度
+          搜索与图论（三）
         
       </div>
     </a>
   
   
-    <a href="/2019/07/18/栈，队列与单调队列/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">栈，队列与单调队列</div>
+    <a href="/2019/07/21/搜索与图论（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"> 搜索与图论（二）</div>
       <i class="icon-circle-right"></i>
     </a>
   

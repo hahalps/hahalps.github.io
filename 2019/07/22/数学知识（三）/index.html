@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>马拉车算法 | MrLi的博客</title>
+  <title>数学知识（三） | MrLi的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="emmm…马拉什么车啊啊啊啊 马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。">
+  <meta name="description" content="今天的话继续补剩下的知识。  中国剩余定理 高斯消元 组合数">
 <meta name="keywords" content="好奇 憨 热爱学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="马拉车算法">
-<meta property="og:url" content="http://yoursite.com/2019/07/18/马拉车算法/index.html">
+<meta property="og:title" content="数学知识（三）">
+<meta property="og:url" content="http://yoursite.com/2019/07/22/数学知识（三）/index.html">
 <meta property="og:site_name" content="MrLi的博客">
-<meta property="og:description" content="emmm…马拉什么车啊啊啊啊 马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。">
+<meta property="og:description" content="今天的话继续补剩下的知识。  中国剩余定理 高斯消元 组合数">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-18T11:16:57.544Z">
+<meta property="og:updated_time" content="2019-07-22T16:35:06.252Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="马拉车算法">
-<meta name="twitter:description" content="emmm…马拉什么车啊啊啊啊 马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。">
+<meta name="twitter:title" content="数学知识（三）">
+<meta name="twitter:description" content="今天的话继续补剩下的知识。  中国剩余定理 高斯消元 组合数">
   
     <link rel="alternative" href="/atom.xml" title="MrLi的博客" type="application/atom+xml">
   
@@ -155,33 +155,65 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-马拉车算法" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-数学知识（三）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      马拉车算法
+      数学知识（三）
     </h1>
   
 
         
-        <a href="/2019/07/18/马拉车算法/" class="archive-article-date">
-  	<time datetime="2019-07-18T11:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
+        <a href="/2019/07/22/数学知识（三）/" class="archive-article-date">
+  	<time datetime="2019-07-22T09:23:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>emmm…马拉什么车啊啊啊啊</p>
-<p>马拉车算法的核心在与记录一个回文半径r和一个回文中心mx来加速求一个位置上的最大回文半径是多少。</p>
+        <p>今天的话继续补剩下的知识。</p>
+<blockquote>
+<p>中国剩余定理</p>
+<p>高斯消元</p>
+<p>组合数</p>
+</blockquote>
 <a id="more"></a>
-<p>第一步的先预处理下待求的字符串，处理的方式在字符串的开头，结尾和每两个位置之间都插入一个不同于字符串里面的字符的一个字符，在这里的话，我插入的是’#’,还有我感觉到比较有意思的地方在于在开头再插入一个字符’$’, 插入了这个字符后，我暴力扩边界的时候就不用判断越界了。</p>
-<p>第二步的话考虑当前位置i，如果不在回文半径里面的话，我们就没有可以利用的信息，只能把回文半径设为1暴力扩了。如果在回文半径里面的话，我们可以根据回文中心求出当前关于位置i关于回文中心的对称点，并得到他的回文半径是多少，假设为len, 如果i+len&lt;=r，说明当前位置i的回文半径就为len, （如果可以更大的话，他的对称点的回文中心只会更大，也可以通过画图得出结论）下面的暴力扩也是没事的，因为一扩的条件就为负退出循环；如果i+len&gt;r的话，因为超过回文半径的范围，所以只能设为r-i，并且尝试暴力扩下边界</p>
-<p>第三步的话记得更新一下回文半径和回文中心。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> str[N], s[N];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> h[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">manacher</span><span class="params">(<span class="keyword">char</span> *s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mx = <span class="number">0</span>, r = <span class="number">0</span>, res = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; s[i] ; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&lt;r) h[i] = min(r-i, h[<span class="number">2</span>*mx-i]);</span><br><span class="line">        <span class="keyword">else</span> h[i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(s[i-h[i]] == s[i+h[i]]) h[i]++;<span class="comment">//暴力扩边界</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(i+h[i]&gt;r)&#123;</span><br><span class="line">            r = i+h[i];</span><br><span class="line">            mx = i;</span><br><span class="line">            res = max(res, h[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>, str);</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">1</span>;    </span><br><span class="line">    <span class="built_in">memset</span>(s, <span class="number">0</span>, <span class="keyword">sizeof</span> s);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; str[i]; i++)&#123;</span><br><span class="line">        s[len++] = <span class="string">'#'</span>;</span><br><span class="line">        s[len++] = str[i];</span><br><span class="line">    &#125;</span><br><span class="line">    s[<span class="number">0</span>] = <span class="string">'$'</span>;</span><br><span class="line">    s[len] = <span class="string">'#'</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, s);</span><br><span class="line">    <span class="keyword">int</span> ans = manacher(s);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>中国剩余定理</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li><p>核心思想的话在于一步步合并两个方程；</p>
+</li>
+<li><p>具体的推导过程在自己的草稿纸上（汗</p>
+</li>
+<li><p>扩展欧几里得算法求的是<code>ax+by=d</code>对应的xy，如果求的是<code>ax+by=m</code>的话，x和y的系数记得扩大<code>m/d</code>倍。</p>
+</li>
+<li><p>最后得到的方程其实是<code>x=ka1+m1</code>,输出的结果应该是<code>(m1%a1+a1)%a1</code>，如果没有要求是最小正整数的话，输出<code>m1</code>也行。</p>
+</li>
+</ul>
+<p><code>代码实现</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">exgcd</span><span class="params">(LL a, LL b, LL &amp;x, LL &amp;y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!b)&#123;</span><br><span class="line">        x = <span class="number">1</span>; y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    LL d = exgcd(b, a%b, y, x);</span><br><span class="line">    y -= a/b*x;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    LL a1, m1;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; a1 &gt;&gt; m1;</span><br><span class="line">    <span class="keyword">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++)&#123;</span><br><span class="line">        LL a2, m2;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a2 &gt;&gt; m2;</span><br><span class="line">        LL k1, k2;</span><br><span class="line">        LL d = exgcd(a1, a2, k1, k2);</span><br><span class="line">        <span class="keyword">if</span>((m2-m1)%d)&#123;</span><br><span class="line">            flag = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        k1 *= (m2-m1)/d;</span><br><span class="line">        LL t = a2/d;</span><br><span class="line">        k1 = (k1 % t + t) % t;</span><br><span class="line">        m1 = a1*k1+m1;</span><br><span class="line">        a1 = a1/d*a2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; (m1 % a1 + a1) % a1 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"-1"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>高斯消元</strong></p>
+<p><code>思路</code>：高斯消元其实就是初等线性变换，把给定的矩阵变成一个上三角矩阵进行求解，下面是进行变换的步骤（从小到达遍历每一列<code>c</code>）：</p>
+<ul>
+<li><p>找出当前列<code>绝对值最大</code>的所在行；</p>
+</li>
+<li><p>把该行交换到<code>最前面</code>；</p>
+</li>
+<li><p>把该行的第<code>c</code>列变为1，后面列所对应的值除以该数；</p>
+</li>
+<li><p>把从下一行开始的行通过等价变换使每一行的第<code>c</code>列变为0；</p>
+</li>
+<li><p>最后判断解的情况，如果是一个完整的上三角矩阵的话，有<code>唯一解</code>；如果不是的话，判断后面是否出现等式不相等的情况，如果是的话，则是<code>无解</code>，如果不是的话，有<code>无穷解</code>。</p>
+</li>
+<li><p>这是一个有趣的代码，里面的一些细节让我获益匪浅。</p>
+</li>
+</ul>
+<p><code>代码实现</code>：$O(n^3)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">110</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-6</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">double</span> g[N][N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gauss</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> r, c;</span><br><span class="line">    <span class="keyword">for</span>(c=<span class="number">0</span>, r=<span class="number">0</span>; c&lt;n; c++)&#123;</span><br><span class="line">        <span class="keyword">int</span> t = r;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=r; i&lt;n; i++)</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">fabs</span>(g[i][c]) &gt; <span class="built_in">fabs</span>(g[t][c])) t = i;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">fabs</span>(g[t][c]) &lt; eps) <span class="keyword">continue</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=c; i&lt;=n; i++) swap(g[t][i], g[r][i]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=n; i&gt;=c; i--) g[r][i] /= g[r][c];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=r+<span class="number">1</span>; i&lt;n; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">fabs</span>(g[i][c]) &gt; eps)</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j=n; j&gt;=c; j--)</span><br><span class="line">                    g[i][j] -= g[r][j] * g[i][c];</span><br><span class="line">        &#125;</span><br><span class="line">        r++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(r&lt;n)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=r; i&lt;n; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">fabs</span>(g[i][n]) &gt; eps) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;n; j++)&#123;</span><br><span class="line">            g[i][n] -= g[i][j] * g[j][n];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n+<span class="number">1</span>; j++)</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; g[i][j];</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">int</span> t = gauss();</span><br><span class="line">    <span class="keyword">if</span>(t == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) <span class="built_in">printf</span>(<span class="string">"%.2lf\n"</span>, g[i][n]);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(t == <span class="number">1</span>) <span class="built_in">puts</span>(<span class="string">"Infinite group solutions"</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"No solution"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -240,7 +272,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/18/马拉车算法/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/22/数学知识（三）/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -254,18 +286,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/18/高精度/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          高精度
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/18/栈，队列与单调队列/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">栈，队列与单调队列</div>
+    <a href="/2019/07/22/数学知识（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数学知识（二）</div>
       <i class="icon-circle-right"></i>
     </a>
   
