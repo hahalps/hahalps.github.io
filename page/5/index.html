@@ -221,19 +221,19 @@
 
 
   
-    <article id="post-并查集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-背包九讲（上）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/18/并查集/">并查集</a>
+      <a class="article-title" href="/2019/07/18/背包九讲（上）/">背包九讲（上）</a>
     </h1>
   
 
         
-        <a href="/2019/07/18/并查集/" class="archive-article-date">
+        <a href="/2019/07/18/背包九讲（上）/" class="archive-article-date">
   	<time datetime="2019-07-18T11:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
 </a>
         
@@ -241,9 +241,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>普通的并查集能够支持的操作是快速的判断一个元素是否属于某个集合和快速的合并两个集合。主要的核心操作是从每个集合选出一个代表元素代表该集合，判断是否在同一集合变为判断代表元素是否相同，合并集合变为两个集合的代表元素。</p>
+        <p>主要是回忆一下自己学过的九种背包以及他们个各自的优化有什么。</p>
         
-          <a class="article-more-a" href="/2019/07/18/并查集/#more">more >></a>
+          <a class="article-more-a" href="/2019/07/18/背包九讲（上）/#more">more >></a>
         
       
 
@@ -256,72 +256,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/18/并查集/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-高精度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/18/高精度/">高精度</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/18/高精度/" class="archive-article-date">
-  	<time datetime="2019-07-18T11:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>高精度的加减乘除的实现方式就是模拟人平时是如何计算加减乘除的。其他需要注意的地方我想到了在写，先占个坑。hh。</p>
-        
-          <a class="article-more-a" href="/2019/07/18/高精度/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/18/高精度/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/07/18/背包九讲（上）/">展开全文 >></a>
         </p>
       
 
@@ -454,6 +389,72 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/07/18/马拉车算法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-快速排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/18/快速排序/">快速排序</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/18/快速排序/" class="archive-article-date">
+  	<time datetime="2019-07-18T11:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>//17：48</p>
+<p>快速排序的思想在于对原数组的划分，选取一个值x, 把数组划分成两边，一边是小于等于x的，另一边是大于x,  再分别对两边分别递归处理，直至所划分的区域长度为1停止。</p>
+        
+          <a class="article-more-a" href="/2019/07/18/快速排序/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/18/快速排序/">展开全文 >></a>
         </p>
       
 
