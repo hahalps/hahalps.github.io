@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Kopieren',
+      copy_success: 'Kopiert',
+      copy_failure: 'Kopieren fehlgeschlagen'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="试着把双人对战的五子棋改成多人对战的模式">
+<meta name="keywords" content="好奇 憨 热爱学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="五子棋改进版的一些思路">
+<meta property="og:url" content="http://yoursite.com/2019/07/28/五子棋改进版的一些思路/index.html">
+<meta property="og:site_name" content="MrLi的博客">
+<meta property="og:description" content="试着把双人对战的五子棋改成多人对战的模式">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-28T07:12:28.661Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="五子棋改进版的一些思路">
+<meta name="twitter:description" content="试着把双人对战的五子棋改成多人对战的模式">
+  <link rel="canonical" href="http://yoursite.com/2019/07/28/五子棋改进版的一些思路/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>五子棋改进版的一些思路 | MrLi的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MrLi的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">喜欢放空,热爱生活     喜欢挖坑，慢慢填</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/28/五子棋改进版的一些思路/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr Li">
+      <meta itemprop="description" content="想成为厨子的程序猿">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MrLi的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">五子棋改进版的一些思路
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-07-28 14:23:59 / Geändert am: 15:12:28" itemprop="dateCreated datePublished" datetime="2019-07-28T14:23:59+08:00">2019-07-28</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>试着把双人对战的五子棋改成多人对战的模式</strong></p>
+<a id="more"></a>
+<hr>
+<p>写这个的话就是写一个大模拟题。<del>哭了</del>。</p>
+<hr>
+<p>1,客户端与服务器通信时消息的格式</p>
+<p>（先假设客户端之间不会在同样的位置下棋）.</p>
+<p><code>动作的类型</code>,是下棋还是和棋又或者是某一个玩家赢棋的消息。（忽略和棋）</p>
+<p><code>下棋的信息</code>：用<strong>行+列+玩家的编号</strong>组成一条信息，如果是服务器向客户端发送其他下棋者的消息的话，可以采用bt程序的种子解析模块的做法，把几条消息写进消息结构体的缓存当中，然后一条条读出来就可以了。</p>
+<p><strong>2，服务器的线程处理</strong></p>
+<p>主要是针对于每一个请求，先解析所获得的数据，更新棋盘信息，（其实在这里的话可以增加是否有同一玩家发送同样下棋位置的逻辑判断，如果有的话，可以先服务器向客户端发送已有玩家的下棋信息，让他重新发送下棋消息，先不实现，考虑简单的情况），返回主程判断是否全部玩家已经下完所有的棋子，如果是的话，向每个玩家发送当前棋盘的消息。</p>
+<p><strong>3，考虑一下需要改动的地方</strong></p>
+<ul>
+<li><p>因为客户端与服务器都需要解析所获的数据，所以的话把这个功能单独的写成一个文件；</p>
+</li>
+<li><p>其次的话，考虑一下服务器端写的时候需要增加的函数，比如说有线程处理函数，针对于每个客户端构造消息并发送消息。</p>
+</li>
+</ul>
+<p><strong>4，整个交互的流程</strong></p>
+<p>客户端向服务器发送请求连接，服务器接收到了请求之后为每个客户端分配编号，服务器进入阻塞状态等待客户端的消息，而每个客户端的话，接收到服务器返回的消息之后，向服务器发送自己的下棋消息，而服务器那边的则是针对每一个下棋信息开一个线程去处理，等到所有的客户端都发过一遍下棋信息之后才向客户端发送其他客户端的下棋信息，重复以上的过程直到有一个赢家产生，判断谁赢棋的逻辑放在服务器，还需向客户端发送当前的棋局+赢家。</p>
+<p><strong>6，还有其他没有考虑到的吗?</strong></p>
+<ul>
+<li><p>咦，客户端没有增加的逻辑吗？</p>
+<ul>
+<li>好像是没有的。</li>
+</ul>
+</li>
+<li><p>那服务器端？</p>
+<ul>
+<li>想想。</li>
+</ul>
+</li>
+</ul>
+<p><strong>5，写这个的缺点</strong></p>
+<ul>
+<li><p>因为是等到客户端下完一遍棋才发送棋盘信息，所以的话会出现下重复的情况，而这个的话自己在程序还没有处理。</p>
+</li>
+<li><p>其实改这个的原因熟悉一下多线程的写法以及熟悉下c/s交互的流程，话说也没有多人下五子棋的情况啊。</p>
+</li>
+<li><p>其实实现的时候还没有考虑到顺序的问题，像平时下棋的程序，每个玩家是等待其他玩家下完棋之后才下棋的，而不是集体向服务器发送下棋信息的。</p>
+</li>
+<li><p>只是学习demo罢了。</p>
+</li>
+</ul>
+<hr>
+<p>那就先写咯，其他的等写的时候再补充了。</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/07/27/几种网络服务器模型的比较/" rel="next" title="几种网络服务器模型的比较">
+                  <i class="fa fa-chevron-left"></i> 几种网络服务器模型的比较
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/07/31/设计一个五子棋AI/" rel="prev" title="设计一个五子棋AI">
+                  设计一个五子棋AI <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mr Li</p>
+  <div class="site-description" itemprop="description">想成为厨子的程序猿</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr Li</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
