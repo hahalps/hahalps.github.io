@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Kopieren',
+      copy_success: 'Kopiert',
+      copy_failure: 'Kopieren fehlgeschlagen'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="这个系列的话记录的是我接下来一段时间学习到的有关c++的知识。 学习的过程自己会尽量用例子记录下所学到的知识点">
+<meta name="keywords" content="好奇 憨 热爱学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++学习笔记（-）">
+<meta property="og:url" content="http://yoursite.com/2019/09/10/c-学习笔记（-）/index.html">
+<meta property="og:site_name" content="MrLi的博客">
+<meta property="og:description" content="这个系列的话记录的是我接下来一段时间学习到的有关c++的知识。 学习的过程自己会尽量用例子记录下所学到的知识点">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-10T18:29:54.558Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c++学习笔记（-）">
+<meta name="twitter:description" content="这个系列的话记录的是我接下来一段时间学习到的有关c++的知识。 学习的过程自己会尽量用例子记录下所学到的知识点">
+  <link rel="canonical" href="http://yoursite.com/2019/09/10/c-学习笔记（-）/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>c++学习笔记（-） | MrLi的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MrLi的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">喜欢放空,热爱生活     喜欢挖坑，慢慢填</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/10/c-学习笔记（-）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr Li">
+      <meta itemprop="description" content="想成为厨子的程序猿">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MrLi的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">c++学习笔记（-）
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-09-10 23:25:39" itemprop="dateCreated datePublished" datetime="2019-09-10T23:25:39+08:00">2019-09-10</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2019-09-11 02:29:54" itemprop="dateModified" datetime="2019-09-11T02:29:54+08:00">2019-09-11</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这个系列的话记录的是我接下来一段时间学习到的有关c++的知识。</p>
+<p>学习的过程自己会尽量用例子记录下所学到的知识点</p>
+<a id="more"></a>
+<p>命名空间–<strong>namespace</strong></p>
+<p>这个机制保证的是同一程序当中的源文件出现函数名以及变量名出现冲突的情况。例如：</p>
+<p><strong>a.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">r</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>b.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">r</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这两个文件在链接的时候链接器会抛出一个链接失败的错误。为了处理类似的错误，<strong>namespace</strong>就排上用场。</p>
+<p>需要注意的是，如果在不同的源文件存在相同的<strong>namespace</strong>的话，这些在这里面定义的变量或者是函数都是属于同一个命名空间，这时需要注意出现<strong>同一个函数或者变量出现多次定义的情况</strong>。</p>
+<hr>
+<p>因为程序的编译过程是先把每一个源文件单独的编译成一个个的.obj文件，然后才做链接的工作。这样的话导致如果你想引用其他源文件的变量或者函数，且没有进行前式声明的话，编译器就会抛出找不到定义的错误。</p>
+<hr>
+<p>如果出现命名空间的名称过长的情况，可以适当利用<strong>typedef</strong>给名称起别名，以减少不必要的代码量。</p>
+<hr>
+<p><strong>++ –</strong>运算符在使用的时候不要在同一条语句出现，原因在于<strong>第一，降低了代码的可读性；第二的话，其计算的方式是不可预测的，其计算的顺序取决于你的编译器</strong>，例子如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x&#123; <span class="number">5</span> &#125;;</span><br><span class="line">	cal(x--, x--);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>std::end</strong>和<strong>\n</strong>的区别：<br>区别的话在于<code>std::endl</code>相对于<code>\n</code>多了个刷新缓冲区的功能，而<code>std::endl</code>本身的话是一个模板函数，而<code>\n</code>只是一个字符常量。</p>
+<hr>
+<p>回忆：变量的作用域以及声明周期。</p>
+<p>局部变量以及函数形参的作用域以及声明周期是从其定义的地方至于出了第一个囊括它的花括号为止。全局变量的话具有外链接，且其可以被访问的范围是从定义开始之中文件末尾。如果不想全局变量具有外链接的话，可以使用<code>static</code>修饰。</p>
+<hr>
+<p>在写c++程序的时候，在执行初始化操作的话，推荐使用<code>{}</code>初始化。but why?哦，用这个初始化的话会判断左右两边的类型是否一个，这样导致的后果有你不能把一个浮点数类型赋值给整型。</p>
+<hr>
+<p>在程序出错的时候想明确这个是那个阶段的错误：</p>
+<ul>
+<li><p>预处理阶段</p>
+</li>
+<li><p>编译阶段</p>
+</li>
+<li><p>链接阶段</p>
+</li>
+</ul>
+<hr>
+<p>auto，能够自动推断标识符所属的类型，不用人为显示的指定，其用到的地方有一下的场景：</p>
+<ul>
+<li><p>函数指针</p>
+</li>
+<li><p>遍历容器</p>
+</li>
+<li><p>泛型</p>
+</li>
+<li><p>。。。</p>
+</li>
+</ul>
+<hr>
+<p>头文件防卫式声明的作用在于<strong>防止把某个文件多次导入到一个源文件当中，导致出现重复定义的错误</strong>，当时这个的话不防止这个文件多次出现在某一个程序下的多个源程序当中。</p>
+<hr>
+<p>有意思的例子:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;typeinfo.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NOPRINT</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="keyword">typeid</span>(NOPRINT + <span class="number">1</span>).name() &lt;&lt; <span class="string">"\n"</span>;   <span class="comment">//int</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="keyword">typeid</span>(NOPRINT+<span class="string">"caca"</span>).name() &lt;&lt; <span class="string">"\n"</span>;<span class="comment">//const char[5]</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>引用：</p>
+<p>引用的作用主要是起到起别名的作用。注意：<strong>一个非常量的引用不用引用常量的值，只能用常量引用去引用，且只能在相同的类型之间引用</strong>，引用的作用通常是<strong>起到简化变量名称以及减少函数调用时参数拷贝的花销</strong>。</p>
+<hr>
+<p><code>const</code>与<code>constexpr</code>的区别:</p>
+<p>constexpr与const的区别在于：<strong>constexpr需要在编译时求值，如果你用一个非常量去初始化constexpr变量的话，会出现编译错误</strong>。</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/08/25/leetcode-three/" rel="next" title="leetcode-three">
+                  <i class="fa fa-chevron-left"></i> leetcode-three
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/09/12/leetcode-four/" rel="prev" title="leetcode-four">
+                  leetcode-four <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mr Li</p>
+  <div class="site-description" itemprop="description">想成为厨子的程序猿</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr Li</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Kopieren',
+      copy_success: 'Kopiert',
+      copy_failure: 'Kopieren fehlgeschlagen'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="今天要做的事情就是把昨天做过的题目的解题思路记录下来。方便以后阅读或者起到一种提示的作用。 1.二叉树的最近公共祖先 思路：  先注意几个前提条件，第一保证的是所求的两个结点一定是存在的；  下面的话只需要考虑这几种情况就可以了：  如果左右子树只有一个有返回的话，返回其非空的值；  如果左右子树都有返回值，则返回其根节点；  如果两者为空的话，则返回空就行了。     代码实现：">
+<meta name="keywords" content="好奇 憨 热爱学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode-four">
+<meta property="og:url" content="http://yoursite.com/2019/09/12/leetcode-four/index.html">
+<meta property="og:site_name" content="MrLi的博客">
+<meta property="og:description" content="今天要做的事情就是把昨天做过的题目的解题思路记录下来。方便以后阅读或者起到一种提示的作用。 1.二叉树的最近公共祖先 思路：  先注意几个前提条件，第一保证的是所求的两个结点一定是存在的；  下面的话只需要考虑这几种情况就可以了：  如果左右子树只有一个有返回的话，返回其非空的值；  如果左右子树都有返回值，则返回其根节点；  如果两者为空的话，则返回空就行了。     代码实现：">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-12T09:58:06.282Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode-four">
+<meta name="twitter:description" content="今天要做的事情就是把昨天做过的题目的解题思路记录下来。方便以后阅读或者起到一种提示的作用。 1.二叉树的最近公共祖先 思路：  先注意几个前提条件，第一保证的是所求的两个结点一定是存在的；  下面的话只需要考虑这几种情况就可以了：  如果左右子树只有一个有返回的话，返回其非空的值；  如果左右子树都有返回值，则返回其根节点；  如果两者为空的话，则返回空就行了。     代码实现：">
+  <link rel="canonical" href="http://yoursite.com/2019/09/12/leetcode-four/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>leetcode-four | MrLi的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MrLi的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">喜欢放空,热爱生活     喜欢挖坑，慢慢填</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/12/leetcode-four/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr Li">
+      <meta itemprop="description" content="想成为厨子的程序猿">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MrLi的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">leetcode-four
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-09-12 16:33:49 / Geändert am: 17:58:06" itemprop="dateCreated datePublished" datetime="2019-09-12T16:33:49+08:00">2019-09-12</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>今天要做的事情就是把昨天做过的题目的解题思路记录下来。方便以后阅读或者起到一种提示的作用。</p>
+<p><strong>1.二叉树的最近公共祖先</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li><p>先注意几个前提条件，第一保证的是所求的两个结点一定是存在的；</p>
+</li>
+<li><p>下面的话只需要考虑这几种情况就可以了：</p>
+<ul>
+<li><p>如果左右子树只有一个有返回的话，返回其非空的值；</p>
+</li>
+<li><p>如果左右子树都有返回值，则返回其根节点；</p>
+</li>
+<li><p>如果两者为空的话，则返回空就行了。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>代码实现</code>：</p>
+<a id="more"></a>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(!root || root==p || root==q) <span class="keyword">return</span> root;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">auto</span> left = lowestCommonAncestor(root-&gt;left, p, q);</span><br><span class="line">        <span class="keyword">auto</span> right = lowestCommonAncestor(root-&gt;right, p, q);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(!left) <span class="keyword">return</span> right;</span><br><span class="line">        <span class="keyword">if</span>(!right) <span class="keyword">return</span> left;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>2.二叉树的序列化与反序列化</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li><p>序列化就是通过遍历的方式把树转换成字符串的形式存储，而反序列化的化就是把给定的字符串转换成树的形式。之所以字符串可以确定一棵树的存储状态，是因为在存储为字符串的过程中保留了空结点的存在。</p>
+</li>
+<li><p>需要特殊处理一下的是当值为负数的时候和逗号的跳过。</p>
+</li>
+</ul>
+<p><code>代码实现</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Codec</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Encodes a tree to a single string.</span></span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">serialize</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> ans = <span class="string">""</span>;</span><br><span class="line">        dfs1(root, ans);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(TreeNode *root, <span class="built_in">string</span> &amp;ans)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>)&#123;</span><br><span class="line">            ans += <span class="string">"#,"</span>;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        ans += to_string(root-&gt;val) + <span class="string">","</span>;</span><br><span class="line">        dfs1(root-&gt;left, ans);</span><br><span class="line">        dfs1(root-&gt;right, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Decodes your encoded data to tree.</span></span><br><span class="line">    <span class="function">TreeNode* <span class="title">deserialize</span><span class="params">(<span class="built_in">string</span> data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        TreeNode *ans = dfs2(data, len);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function">TreeNode* <span class="title">dfs2</span><span class="params">(<span class="built_in">string</span> &amp;data, <span class="keyword">int</span> &amp;idx)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(data[idx] == <span class="string">'#'</span>)&#123;</span><br><span class="line">            idx += <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> is_mius = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">while</span>(data[idx] != <span class="string">','</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(data[idx] == <span class="string">'-'</span>) is_mius = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">else</span> t = t * <span class="number">10</span> + data[idx] - <span class="string">'0'</span>;</span><br><span class="line">            idx++;</span><br><span class="line">        &#125;</span><br><span class="line">        idx++;</span><br><span class="line">        <span class="keyword">if</span>(is_mius) t = -t;</span><br><span class="line">        </span><br><span class="line">        TreeNode *root = <span class="keyword">new</span> TreeNode(t);</span><br><span class="line">        root-&gt;left = dfs2(data, idx);</span><br><span class="line">        root-&gt;right = dfs2(data, idx);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>3.二叉树的直径</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li><p>求二叉树的最大直径的话可以转换成求其中各个子树当中包含子树根节点的最大路径，并在这些结果当中求一个max就行；</p>
+</li>
+<li><p>其次需要注意的是长度指的是边的长度；</p>
+</li>
+<li><p>一个子树根节点的最大直径等价于左子树到根结点的最大路径以及右子树到达子树根节点的最大路径之和；</p>
+</li>
+<li><p>往上返回值的时候把左右子树的路径值求一个max加一返回就行。</p>
+</li>
+</ul>
+<p><code>代码实现</code>:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(TreeNode *u)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!u) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">auto</span> left = dfs(u-&gt;left);</span><br><span class="line">        <span class="keyword">auto</span> right = dfs(u-&gt;right);</span><br><span class="line">        ans = max(ans, left+right); </span><br><span class="line">        <span class="keyword">return</span> max(left+<span class="number">1</span>, right+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">diameterOfBinaryTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        dfs(root);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>3.二叉树的最大路径和</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li><p>等价于求一每一个以子树根节点的的最大路径和，再求一个max就是答案；</p>
+</li>
+<li><p>需要注意的是当左右子树返回过来的值是负数的时候，选择不要这些值，因为这只会使我们的最优值变得更小；</p>
+</li>
+<li><p>往上传递的也是单边的路径和，类似上面的题。</p>
+</li>
+</ul>
+<p><code>代码实现</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> ans = INT_MIN;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(TreeNode *u)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!u) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> left = max(<span class="number">0</span>, dfs(u-&gt;left));</span><br><span class="line">        <span class="keyword">int</span> right = max(<span class="number">0</span>, dfs(u-&gt;right));</span><br><span class="line">        ans = max(ans, left+u-&gt;val+right);</span><br><span class="line">        <span class="keyword">return</span> u-&gt;val + max(left, right);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxPathSum</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        dfs(root);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>5.二叉树迭代器</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li><p>因为返回的是二叉树搜索树目前的最小值，所以的话采用中序遍历的方式；</p>
+</li>
+<li><p>做法也很简单，申请一个栈，把左边的结点的全部压到栈中，每当弹出一个结点，判断其右子树是否存在，存在的话把这个右子树的左边结点全部压到栈中；</p>
+</li>
+<li><p>重复以上过程，直至栈为空。</p>
+</li>
+</ul>
+<p><code>代码实现</code>:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BSTIterator</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">stack</span>&lt;TreeNode *&gt; stk;</span><br><span class="line">    </span><br><span class="line">    BSTIterator(TreeNode* root) &#123;</span><br><span class="line">        <span class="keyword">while</span>(root)&#123;</span><br><span class="line">            stk.push(root);</span><br><span class="line">            root = root-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** @return the next smallest number */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        TreeNode *u = stk.top();</span><br><span class="line">        stk.pop();</span><br><span class="line">        <span class="keyword">int</span> res = u-&gt;val;</span><br><span class="line">        u = u-&gt;right;</span><br><span class="line">        <span class="keyword">while</span>(u)&#123;</span><br><span class="line">            stk.push(u);</span><br><span class="line">            u = u-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** @return whether we have a next smallest number */</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> stk.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your BSTIterator object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * BSTIterator* obj = new BSTIterator(root);</span></span><br><span class="line"><span class="comment"> * int param_1 = obj-&gt;next();</span></span><br><span class="line"><span class="comment"> * bool param_2 = obj-&gt;hasNext();</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/10/c-学习笔记（-）/" rel="next" title="c++学习笔记（-）">
+                  <i class="fa fa-chevron-left"></i> c++学习笔记（-）
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/09/13/leetcode-v/" rel="prev" title="leetcode-v">
+                  leetcode-v <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mr Li</p>
+  <div class="site-description" itemprop="description">想成为厨子的程序猿</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr Li</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

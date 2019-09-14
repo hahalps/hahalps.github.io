@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Kopieren',
+      copy_success: 'Kopiert',
+      copy_failure: 'Kopieren fehlgeschlagen'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="1,count and say 思路：  这道题乍一看的话有点难以理解，直到看到别人的解释才反应过来。题意的话的意思就是从左到右数之前一个字符串当中的数字出现了几个，并用这个得到的结果构成新的字符串。  明白了话，按着题意做就行了。">
+<meta name="keywords" content="好奇 憨 热爱学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode-v">
+<meta property="og:url" content="http://yoursite.com/2019/09/13/leetcode-v/index.html">
+<meta property="og:site_name" content="MrLi的博客">
+<meta property="og:description" content="1,count and say 思路：  这道题乍一看的话有点难以理解，直到看到别人的解释才反应过来。题意的话的意思就是从左到右数之前一个字符串当中的数字出现了几个，并用这个得到的结果构成新的字符串。  明白了话，按着题意做就行了。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-12T18:28:30.237Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode-v">
+<meta name="twitter:description" content="1,count and say 思路：  这道题乍一看的话有点难以理解，直到看到别人的解释才反应过来。题意的话的意思就是从左到右数之前一个字符串当中的数字出现了几个，并用这个得到的结果构成新的字符串。  明白了话，按着题意做就行了。">
+  <link rel="canonical" href="http://yoursite.com/2019/09/13/leetcode-v/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>leetcode-v | MrLi的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MrLi的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">喜欢放空,热爱生活     喜欢挖坑，慢慢填</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/13/leetcode-v/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr Li">
+      <meta itemprop="description" content="想成为厨子的程序猿">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MrLi的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">leetcode-v
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-09-13 01:30:14 / Geändert am: 02:28:30" itemprop="dateCreated datePublished" datetime="2019-09-13T01:30:14+08:00">2019-09-13</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>1,count and say</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li><p>这道题乍一看的话有点难以理解，直到看到别人的解释才反应过来。题意的话的意思就是从左到右数之前一个字符串当中的数字出现了几个，并用这个得到的结果构成新的字符串。</p>
+</li>
+<li><p>明白了话，按着题意做就行了。</p>
+</li>
+</ul>
+<a id="more"></a>
+<p><code>代码实现</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ans;</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">countAndSay</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> s = <span class="string">"1"</span>;</span><br><span class="line">        ans.push_back(<span class="string">""</span>);</span><br><span class="line">        ans.push_back(s);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=n; i++)&#123;</span><br><span class="line">            <span class="built_in">string</span> tmp = <span class="string">""</span>;</span><br><span class="line">            <span class="built_in">string</span> t = ans[i<span class="number">-1</span>];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;t.size(); )&#123;</span><br><span class="line">                <span class="keyword">char</span> ch = t[j++];</span><br><span class="line">                <span class="keyword">int</span> len = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span>(j&lt;t.size() &amp;&amp; t[j]==ch) j++, len++;</span><br><span class="line">                tmp += to_string(len) + ch;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.push_back(tmp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>2.字母异位词分组</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li><p>这道题的话先把每个词单独的进行排序，看看能够分成多少组，并为每个组分配编号；</p>
+</li>
+<li><p>再一次遍历把单词放到下标所对应的组别就行。</p>
+</li>
+</ul>
+<p><code>代码实现</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; groupAnagrams(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; strs) &#123;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt; chk;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x : strs)&#123;</span><br><span class="line">            <span class="built_in">string</span> t = x;</span><br><span class="line">            sort(t.begin(), t.end());</span><br><span class="line">            chk.insert(t);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> idx = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x : chk)&#123;</span><br><span class="line">            m[x] = idx++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; ans(idx);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x : strs)&#123;</span><br><span class="line">            <span class="built_in">string</span> t = x;</span><br><span class="line">            sort(t.begin(), t.end());</span><br><span class="line">            ans[m[t]].push_back(x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>3,翻转字符串里的单词</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li>借助<strong>stringstream</strong>提取文本当中的每一个单词并把他们压入栈进行反转的操作。</li>
+</ul>
+<p><code>代码实现</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">reverseWords</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s == <span class="string">""</span>) <span class="keyword">return</span> s;</span><br><span class="line">        <span class="function"><span class="built_in">stringstream</span> <span class="title">ss</span><span class="params">(s)</span></span>;</span><br><span class="line">        <span class="keyword">int</span> first = <span class="literal">true</span>;</span><br><span class="line">        <span class="built_in">string</span> ans = <span class="string">""</span>, tmp;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="built_in">string</span>&gt; stk;</span><br><span class="line">        <span class="keyword">while</span>(ss &gt;&gt; tmp)&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; tmp &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            stk.push(tmp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(stk.size())&#123;</span><br><span class="line">            <span class="built_in">string</span> t = stk.top();</span><br><span class="line">            stk.pop();</span><br><span class="line">            <span class="keyword">if</span>(first) ans += t, first = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">else</span> ans += <span class="string">" "</span> + t;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>4.比较版本号</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li>分成两部分比较。比如现在在比较<code>1.0.0.1</code>和<code>1.0</code>,先比较较小的部分也就是<code>1.0</code>部分，如果较小部分可以决出胜负的话，就返回结果了。如果没有的话，就是代表前面的两者一致，这样的话就要判断剩余的部分是否存在大于0的部分，谁存在就谁，如果以上都没有产生结果的话，就代表两者相等。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">compareVersion</span><span class="params">(<span class="built_in">string</span> v1, <span class="built_in">string</span> v2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len1 = <span class="number">0</span>, len2 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(len1&lt;v1.size() &amp;&amp; len2&lt;v2.size())&#123;</span><br><span class="line">            <span class="keyword">int</span> n1 = get(v1, len1);</span><br><span class="line">            <span class="keyword">int</span> n2 = get(v2, len2);</span><br><span class="line">            <span class="keyword">if</span>(n1 &gt; n2) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(n1 &lt; n2) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; len1 &lt;&lt; <span class="string">" "</span> &lt;&lt; len2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(jug(v1, len1)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(jug(v2, len2)) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">jug</span><span class="params">(<span class="built_in">string</span> &amp;v, <span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(len&lt;v.size())&#123;</span><br><span class="line">            <span class="keyword">if</span>(get(v, len)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="built_in">string</span> &amp;v, <span class="keyword">int</span> &amp;len)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(len&lt;v.size() &amp;&amp; <span class="built_in">isdigit</span>(v[len])) res = res*<span class="number">10</span> + v[len]-<span class="string">'0'</span>, len++;</span><br><span class="line">        len++;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>5.独特的电子邮件</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li>先按照题目的要求对本地名称进行处理，再把处理得到的结果放到set当中去重就可以了。</li>
+</ul>
+<p><code>代码实现</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt; chk;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numUniqueEmails</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; emails)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x : emails)&#123;</span><br><span class="line">            <span class="keyword">auto</span> t = trans(x);</span><br><span class="line">            chk.insert(t);</span><br><span class="line">        &#125;   </span><br><span class="line">        <span class="keyword">return</span> chk.size();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">trans</span><span class="params">(<span class="built_in">string</span> &amp;t)</span></span>&#123;</span><br><span class="line">        <span class="built_in">string</span> res = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;t.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(t[i] == <span class="string">'+'</span>)&#123;</span><br><span class="line">                i++;</span><br><span class="line">                <span class="keyword">while</span>(i&lt;t.size() &amp;&amp; t[i]!=<span class="string">'@'</span>) i++;</span><br><span class="line">                res += t.substr(i, t.size()-i);</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; <span class="string">"f1"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">                <span class="keyword">return</span> res;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(t[i] == <span class="string">'@'</span>)&#123;</span><br><span class="line">                res += t.substr(i, t.size()-i);</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; <span class="string">"f2"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">                <span class="keyword">return</span> res; </span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(t[i] != <span class="string">'.'</span>) res += t[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>6.最长回文子串</strong></p>
+<p><code>思路</code>：</p>
+<ul>
+<li>枚举字符串的每一个位置，判断以这个点出发的最长奇数串以及偶数串分别为多少，保留当中的最大值就可以了。</li>
+</ul>
+<p><code>代码实现</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> res = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">int</span> maxlen = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s.size(); i++)&#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i, k=i; j&gt;=<span class="number">0</span> &amp;&amp; k&lt;s.size(); j--, k++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s[j] == s[k])&#123;</span><br><span class="line">                    <span class="keyword">if</span>(maxlen &lt; k-j+<span class="number">1</span>)&#123;</span><br><span class="line">                        maxlen = k-j+<span class="number">1</span>;</span><br><span class="line">                        res = s.substr(j, maxlen);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i, k=i+<span class="number">1</span>; j&gt;=<span class="number">0</span> &amp;&amp; k&lt;s.size(); j--, k++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s[j] == s[k] )&#123;</span><br><span class="line">                    <span class="keyword">if</span>(maxlen &lt; k-j+<span class="number">1</span>)&#123;</span><br><span class="line">                        maxlen = k-j+<span class="number">1</span>;</span><br><span class="line">                        res = s.substr(j, maxlen);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/12/leetcode-four/" rel="next" title="leetcode-four">
+                  <i class="fa fa-chevron-left"></i> leetcode-four
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/09/13/leetcode-vi/" rel="prev" title="leetcode-vi">
+                  leetcode-vi <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mr Li</p>
+  <div class="site-description" itemprop="description">想成为厨子的程序猿</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr Li</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
